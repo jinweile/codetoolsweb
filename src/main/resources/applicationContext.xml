@@ -21,8 +21,8 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${db.driverClassName}" />
 		<property name="url" value="${db.url}" />
-		<property name="username" value="${db.username}" />
-		<property name="password" value="${db.password}" />
+		<!-- <property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" /> -->
 		<!--maxActive: 最大连接数量-->
         <property name="maxActive" value="150"/>
         <!--minIdle: 最小空闲连接-->
@@ -33,11 +33,11 @@
         <!--initialSize: 初始化连接-->
         <property name="initialSize" value="30"/>
         <!-- 连接被泄露时是否打印 -->
-        <property name="logAbandoned" value="true"/>
+        <!-- <property name="logAbandoned" value="true"/> -->
         <!--removeAbandoned: 是否自动回收超时连接-->
-        <property name="removeAbandoned"  value="true"/>
+        <!-- <property name="removeAbandoned"  value="true"/> -->
         <!--removeAbandonedTimeout: 超时时间(以秒数为单位)-->
-        <property name="removeAbandonedTimeout" value="10"/>
+        <!-- <property name="removeAbandonedTimeout" value="10"/> -->
         <!--maxWait: 超时等待时间以毫秒为单位 1000等于60秒-->
         <property name="maxWait" value="1000"/>
         <!-- 在空闲连接回收器线程运行期间休眠的时间值,以毫秒为单位. -->
@@ -94,15 +94,11 @@
 	</bean>
 	<!-- ibatis配置End -->
 	<!-- Dao和Service单独配置文件Start -->
-	<import resource="bean/DataModelBean.xml" />
-	<import resource="bean/SourceBean.xml" />
-	<import resource="bean/SourceSpiderBean.xml" />
-	<import resource="bean/SpiderColumnBean.xml" />
-	<import resource="bean/SpideredUrlBean.xml" />
-	<import resource="bean/SpiderRegTemplateBean.xml" />
-	<import resource="bean/TestUrlBean.xml" />
-	<import resource="bean/TemplateBean.xml" />
-	<import resource="bean/TemplateDataModelBean.xml" />
+	<import resource="bean/ConstInfoBean.xml" />
+	<import resource="bean/DbInfoBean.xml" />
+	<import resource="bean/TemplateConstBean.xml" />
+	<import resource="bean/TemplateInfoBean.xml" />
+	<import resource="bean/TemplateProjectBean.xml" />
 	<!-- Dao和Service单独配置文件End -->
 	<!-- velocity模版Start -->
 	<bean id="velocityView" class="org.springframework.web.servlet.ModelAndView" />

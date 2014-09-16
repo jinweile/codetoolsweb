@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="TemplateInfo">
+
+	<typeAlias alias="TemplateInfo" type="person.jwl.codetoolsweb.model.TemplateInfo" />
+
+	<resultMap id="TemplateInfo-FullResultMap" class="TemplateInfo">
+		<result property="tiId" column="ti_id"/>
+		<result property="tpId" column="tp_id"/>
+		<result property="tiName" column="ti_name"/>
+		<result property="tiContent" column="ti_content"/>
+		<result property="tiCreatetime" column="ti_createtime"/>
+	</resultMap>
+	<resultMap id="TemplateInfo-NonLobResultMap" class="TemplateInfo">
+		<result property="tiId" column="ti_id"/>
+		<result property="tpId" column="tp_id"/>
+		<result property="tiName" column="ti_name"/>
+		<result property="tiCreatetime" column="ti_createtime"/>
+	</resultMap>
+
+	<select id="TemplateInfo-GetCount" resultClass="Integer">
+		SELECT count(1) FROM template_info
+	</select>
+	
+	<select id="TemplateInfo-FindAll" resultMap="TemplateInfo-FullResultMap">
+		SELECT
+			ti_id
+			, tp_id
+			, ti_name
+			, ti_content
+			, ti_createtime
+		FROM template_info
+	</select>
+	<select id="TemplateInfo-QuickFindAll" resultMap="TemplateInfo-NonLobResultMap">
+		SELECT
+			ti_id
+			, tp_id
+			, ti_name
+			, ti_createtime
+		FROM template_info
+	</select>
+	
+	<select id="TemplateInfo-Find" parameterClass="Long" resultMap="TemplateInfo-FullResultMap">
+		SELECT
+			ti_id
+			, tp_id
+			, ti_name
+			, ti_content
+		FROM template_info
+		WHERE
+			(ti_id = #tiId#)
+	</select>
+	<select id="TemplateInfo-QuickFind" parameterClass="TemplateInfo" resultMap="TemplateInfo-NonLobResultMap">
+		SELECT
+			ti_id
+			, tp_id
+			, ti_name
+			, ti_content
+		FROM template_info
+		WHERE
+			(ti_id = #tiId#)
+	</select>
+	
+	<select id="TemplateInfo-FindByTpId" parameterClass="Long" resultMap="TemplateInfo-FullResultMap">
+		SELECT
+			ti_id
+			, tp_id
+			, ti_name
+			, ti_content
+		FROM template_info
+		WHERE (tp_id = #value#)
+	</select>
+	<select id="TemplateInfo-QuickFindByTpId" parameterClass="Long" resultMap="TemplateInfo-NonLobResultMap">
+		SELECT
+			ti_id
+			, tp_id
+			, ti_name
+			, ti_content
+		FROM template_info
+		WHERE (tp_id = #value#)
+	</select>
+	<select id="TemplateInfo-FindByTiName" parameterClass="String" resultMap="TemplateInfo-FullResultMap">
+		SELECT
+			ti_id
+			, tp_id
+			, ti_name
+			, ti_content
+		FROM template_info
+		WHERE (ti_name = #value#)
+	</select>
+	<select id="TemplateInfo-QuickFindByTiName" parameterClass="String" resultMap="TemplateInfo-NonLobResultMap">
+		SELECT
+			ti_id
+			, tp_id
+			, ti_name
+			, ti_content
+		FROM template_info
+		WHERE (ti_name = #value#)
+	</select>
+	<select id="TemplateInfo-FindByTiCreatetime" parameterClass="java.util.Date" resultMap="TemplateInfo-FullResultMap">
+		SELECT
+			ti_id
+			, tp_id
+			, ti_name
+			, ti_content
+		FROM template_info
+		WHERE (ti_createtime = #value#)
+	</select>
+	<select id="TemplateInfo-QuickFindByTiCreatetime" parameterClass="java.util.Date" resultMap="TemplateInfo-NonLobResultMap">
+		SELECT
+			ti_id
+			, tp_id
+			, ti_name
+			, ti_content
+		FROM template_info
+		WHERE (ti_createtime = #value#)
+	</select>
+	
+	<insert id="TemplateInfo-Insert" parameterClass="TemplateInfo">
+		INSERT INTO template_info (
+			 ti_id
+			, tp_id
+			, ti_name
+			, ti_content
+			, ti_createtime
+		) VALUES (
+			 #tiId#
+			, #tpId#
+			, #tiName#
+			, #tiContent#
+			, #tiCreatetime#
+		)
+		<selectKey resultClass="Long" keyProperty="tiId" >
+			<!--select LAST_INSERT_ID() as value-->
+			select @@identity as value
+		</selectKey>
+	</insert>
+
+	<update id="TemplateInfo-Update" parameterClass="TemplateInfo">
+		UPDATE template_info SET
+			 tp_id = #tpId#
+			, ti_name = #tiName#
+			, ti_content = #tiContent#
+			, ti_createtime = #tiCreatetime#
+		WHERE
+			(ti_id = #tiId#)
+	</update>
+
+	<delete id="TemplateInfo-Delete" parameterClass="TemplateInfo">
+		DELETE FROM template_info
+		WHERE
+			(ti_id = #tiId#)
+	</delete>
+
+	<delete id="TemplateInfo-DeleteByTpId" parameterClass="Long">
+		DELETE FROM template_info WHERE (tp_id = #value#)
+	</delete>
+	<delete id="TemplateInfo-DeleteByTiName" parameterClass="String">
+		DELETE FROM template_info WHERE (ti_name = #value#)
+	</delete>
+	<delete id="TemplateInfo-DeleteByTiCreatetime" parameterClass="java.util.Date">
+		DELETE FROM template_info WHERE (ti_createtime = #value#)
+	</delete>
+	
+	<select id="TemplateInfo-Reload" parameterClass="TemplateInfo" resultMap="TemplateInfo-FullResultMap">
+		SELECT
+			ti_id
+			, tp_id
+			, ti_name
+			, ti_content
+		FROM template_info
+		WHERE (ti_id = #tiId#)
+	</select>
+
+</sqlMap>

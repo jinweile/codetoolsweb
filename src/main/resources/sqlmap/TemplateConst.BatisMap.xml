@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="TemplateConst">
+
+	<typeAlias alias="TemplateConst" type="person.jwl.codetoolsweb.model.TemplateConst" />
+
+	<resultMap id="TemplateConst-FullResultMap" class="TemplateConst">
+		<result property="tcId" column="tc_id"/>
+		<result property="tiId" column="ti_id"/>
+		<result property="coiId" column="coi_id"/>
+	</resultMap>
+
+	<select id="TemplateConst-GetCount" resultClass="Integer">
+		SELECT count(1) FROM template_const
+	</select>
+	
+	<select id="TemplateConst-FindAll" resultMap="TemplateConst-FullResultMap">
+		SELECT
+			tc_id
+			, ti_id
+			, coi_id
+		FROM template_const
+	</select>
+	
+	<select id="TemplateConst-Find" parameterClass="Long" resultMap="TemplateConst-FullResultMap">
+		SELECT
+			tc_id
+			, ti_id
+			, coi_id
+		FROM template_const
+		WHERE
+			(tc_id = #tcId#)
+	</select>
+	
+	<select id="TemplateConst-FindByTiId" parameterClass="Long" resultMap="TemplateConst-FullResultMap">
+		SELECT
+			tc_id
+			, ti_id
+			, coi_id
+		FROM template_const
+		WHERE (ti_id = #value#)
+	</select>
+	<select id="TemplateConst-FindByCoiId" parameterClass="Long" resultMap="TemplateConst-FullResultMap">
+		SELECT
+			tc_id
+			, ti_id
+			, coi_id
+		FROM template_const
+		WHERE (coi_id = #value#)
+	</select>
+	
+	<insert id="TemplateConst-Insert" parameterClass="TemplateConst">
+		INSERT INTO template_const (
+			 tc_id
+			, ti_id
+			, coi_id
+		) VALUES (
+			 #tcId#
+			, #tiId#
+			, #coiId#
+		)
+		<selectKey resultClass="Long" keyProperty="tcId" >
+			<!--select LAST_INSERT_ID() as value-->
+			select @@identity as value
+		</selectKey>
+	</insert>
+
+	<update id="TemplateConst-Update" parameterClass="TemplateConst">
+		UPDATE template_const SET
+			 ti_id = #tiId#
+			, coi_id = #coiId#
+		WHERE
+			(tc_id = #tcId#)
+	</update>
+
+	<delete id="TemplateConst-Delete" parameterClass="TemplateConst">
+		DELETE FROM template_const
+		WHERE
+			(tc_id = #tcId#)
+	</delete>
+
+	<delete id="TemplateConst-DeleteByTiId" parameterClass="Long">
+		DELETE FROM template_const WHERE (ti_id = #value#)
+	</delete>
+	<delete id="TemplateConst-DeleteByCoiId" parameterClass="Long">
+		DELETE FROM template_const WHERE (coi_id = #value#)
+	</delete>
+	
+	<select id="TemplateConst-Reload" parameterClass="TemplateConst" resultMap="TemplateConst-FullResultMap">
+		SELECT
+			tc_id
+			, ti_id
+			, coi_id
+		FROM template_const
+		WHERE (tc_id = #tcId#)
+	</select>
+
+</sqlMap>

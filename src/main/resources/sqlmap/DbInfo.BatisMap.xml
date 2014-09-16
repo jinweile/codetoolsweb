@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="DbInfo">
+
+	<typeAlias alias="DbInfo" type="person.jwl.codetoolsweb.model.DbInfo" />
+
+	<resultMap id="DbInfo-FullResultMap" class="DbInfo">
+		<result property="diId" column="di_id"/>
+		<result property="diName" column="di_name"/>
+		<result property="diClassname" column="di_classname"/>
+		<result property="diLinks" column="di_links"/>
+		<result property="diTablesql" column="di_tablesql"/>
+		<result property="diColsql" column="di_colsql"/>
+		<result property="diCreatetime" column="di_createtime"/>
+	</resultMap>
+	<resultMap id="DbInfo-NonLobResultMap" class="DbInfo">
+		<result property="diId" column="di_id"/>
+		<result property="diName" column="di_name"/>
+		<result property="diClassname" column="di_classname"/>
+		<result property="diLinks" column="di_links"/>
+		<result property="diCreatetime" column="di_createtime"/>
+	</resultMap>
+
+	<select id="DbInfo-GetCount" resultClass="Integer">
+		SELECT count(1) FROM db_info
+	</select>
+	
+	<select id="DbInfo-FindAll" resultMap="DbInfo-FullResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+			, di_colsql
+			, di_createtime
+		FROM db_info
+	</select>
+	<select id="DbInfo-QuickFindAll" resultMap="DbInfo-NonLobResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_createtime
+		FROM db_info
+	</select>
+	
+	<select id="DbInfo-Find" parameterClass="Long" resultMap="DbInfo-FullResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+		FROM db_info
+		WHERE
+			(di_id = #diId#)
+	</select>
+	<select id="DbInfo-QuickFind" parameterClass="DbInfo" resultMap="DbInfo-NonLobResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+		FROM db_info
+		WHERE
+			(di_id = #diId#)
+	</select>
+	
+	<select id="DbInfo-FindByDiName" parameterClass="String" resultMap="DbInfo-FullResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+		FROM db_info
+		WHERE (di_name = #value#)
+	</select>
+	<select id="DbInfo-QuickFindByDiName" parameterClass="String" resultMap="DbInfo-NonLobResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+		FROM db_info
+		WHERE (di_name = #value#)
+	</select>
+	<select id="DbInfo-FindByDiClassname" parameterClass="String" resultMap="DbInfo-FullResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+		FROM db_info
+		WHERE (di_classname = #value#)
+	</select>
+	<select id="DbInfo-QuickFindByDiClassname" parameterClass="String" resultMap="DbInfo-NonLobResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+		FROM db_info
+		WHERE (di_classname = #value#)
+	</select>
+	<select id="DbInfo-FindByDiLinks" parameterClass="String" resultMap="DbInfo-FullResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+		FROM db_info
+		WHERE (di_links = #value#)
+	</select>
+	<select id="DbInfo-QuickFindByDiLinks" parameterClass="String" resultMap="DbInfo-NonLobResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+		FROM db_info
+		WHERE (di_links = #value#)
+	</select>
+	<select id="DbInfo-FindByDiCreatetime" parameterClass="java.util.Date" resultMap="DbInfo-FullResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+		FROM db_info
+		WHERE (di_createtime = #value#)
+	</select>
+	<select id="DbInfo-QuickFindByDiCreatetime" parameterClass="java.util.Date" resultMap="DbInfo-NonLobResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+		FROM db_info
+		WHERE (di_createtime = #value#)
+	</select>
+	
+	<insert id="DbInfo-Insert" parameterClass="DbInfo">
+		INSERT INTO db_info (
+			 di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+			, di_colsql
+			, di_createtime
+		) VALUES (
+			 #diId#
+			, #diName#
+			, #diClassname#
+			, #diLinks#
+			, #diTablesql#
+			, #diColsql#
+			, #diCreatetime#
+		)
+		<selectKey resultClass="Long" keyProperty="diId" >
+			<!--select LAST_INSERT_ID() as value-->
+			select @@identity as value
+		</selectKey>
+	</insert>
+
+	<update id="DbInfo-Update" parameterClass="DbInfo">
+		UPDATE db_info SET
+			 di_name = #diName#
+			, di_classname = #diClassname#
+			, di_links = #diLinks#
+			, di_tablesql = #diTablesql#
+			, di_colsql = #diColsql#
+			, di_createtime = #diCreatetime#
+		WHERE
+			(di_id = #diId#)
+	</update>
+
+	<delete id="DbInfo-Delete" parameterClass="DbInfo">
+		DELETE FROM db_info
+		WHERE
+			(di_id = #diId#)
+	</delete>
+
+	<delete id="DbInfo-DeleteByDiName" parameterClass="String">
+		DELETE FROM db_info WHERE (di_name = #value#)
+	</delete>
+	<delete id="DbInfo-DeleteByDiClassname" parameterClass="String">
+		DELETE FROM db_info WHERE (di_classname = #value#)
+	</delete>
+	<delete id="DbInfo-DeleteByDiLinks" parameterClass="String">
+		DELETE FROM db_info WHERE (di_links = #value#)
+	</delete>
+	<delete id="DbInfo-DeleteByDiCreatetime" parameterClass="java.util.Date">
+		DELETE FROM db_info WHERE (di_createtime = #value#)
+	</delete>
+	
+	<select id="DbInfo-Reload" parameterClass="DbInfo" resultMap="DbInfo-FullResultMap">
+		SELECT
+			di_id
+			, di_name
+			, di_classname
+			, di_links
+			, di_tablesql
+		FROM db_info
+		WHERE (di_id = #diId#)
+	</select>
+
+</sqlMap>

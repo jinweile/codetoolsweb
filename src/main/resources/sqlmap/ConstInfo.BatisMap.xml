@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="ConstInfo">
+
+	<typeAlias alias="ConstInfo" type="person.jwl.codetoolsweb.model.ConstInfo" />
+
+	<resultMap id="ConstInfo-FullResultMap" class="ConstInfo">
+		<result property="coiId" column="coi_id"/>
+		<result property="coiCode" column="coi_code"/>
+		<result property="coiName" column="coi_name"/>
+		<result property="coiRemark" column="coi_remark"/>
+		<result property="coiCreatetime" column="coi_createtime"/>
+	</resultMap>
+
+	<select id="ConstInfo-GetCount" resultClass="Integer">
+		SELECT count(1) FROM const_info
+	</select>
+	
+	<select id="ConstInfo-FindAll" resultMap="ConstInfo-FullResultMap">
+		SELECT
+			coi_id
+			, coi_code
+			, coi_name
+			, coi_remark
+			, coi_createtime
+		FROM const_info
+	</select>
+	
+	<select id="ConstInfo-Find" parameterClass="Long" resultMap="ConstInfo-FullResultMap">
+		SELECT
+			coi_id
+			, coi_code
+			, coi_name
+			, coi_remark
+			, coi_createtime
+		FROM const_info
+		WHERE
+			(coi_id = #coiId#)
+	</select>
+	
+	<select id="ConstInfo-FindByCoiCode" parameterClass="String" resultMap="ConstInfo-FullResultMap">
+		SELECT
+			coi_id
+			, coi_code
+			, coi_name
+			, coi_remark
+			, coi_createtime
+		FROM const_info
+		WHERE (coi_code = #value#)
+	</select>
+	<select id="ConstInfo-FindByCoiName" parameterClass="String" resultMap="ConstInfo-FullResultMap">
+		SELECT
+			coi_id
+			, coi_code
+			, coi_name
+			, coi_remark
+			, coi_createtime
+		FROM const_info
+		WHERE (coi_name = #value#)
+	</select>
+	<select id="ConstInfo-FindByCoiRemark" parameterClass="String" resultMap="ConstInfo-FullResultMap">
+		SELECT
+			coi_id
+			, coi_code
+			, coi_name
+			, coi_remark
+			, coi_createtime
+		FROM const_info
+		WHERE (coi_remark = #value#)
+	</select>
+	<select id="ConstInfo-FindByCoiCreatetime" parameterClass="java.util.Date" resultMap="ConstInfo-FullResultMap">
+		SELECT
+			coi_id
+			, coi_code
+			, coi_name
+			, coi_remark
+			, coi_createtime
+		FROM const_info
+		WHERE (coi_createtime = #value#)
+	</select>
+	
+	<insert id="ConstInfo-Insert" parameterClass="ConstInfo">
+		INSERT INTO const_info (
+			 coi_id
+			, coi_code
+			, coi_name
+			, coi_remark
+			, coi_createtime
+		) VALUES (
+			 #coiId#
+			, #coiCode#
+			, #coiName#
+			, #coiRemark#
+			, #coiCreatetime#
+		)
+		<selectKey resultClass="Long" keyProperty="coiId" >
+			<!--select LAST_INSERT_ID() as value-->
+			select @@identity as value
+		</selectKey>
+	</insert>
+
+	<update id="ConstInfo-Update" parameterClass="ConstInfo">
+		UPDATE const_info SET
+			 coi_code = #coiCode#
+			, coi_name = #coiName#
+			, coi_remark = #coiRemark#
+			, coi_createtime = #coiCreatetime#
+		WHERE
+			(coi_id = #coiId#)
+	</update>
+
+	<delete id="ConstInfo-Delete" parameterClass="ConstInfo">
+		DELETE FROM const_info
+		WHERE
+			(coi_id = #coiId#)
+	</delete>
+
+	<delete id="ConstInfo-DeleteByCoiCode" parameterClass="String">
+		DELETE FROM const_info WHERE (coi_code = #value#)
+	</delete>
+	<delete id="ConstInfo-DeleteByCoiName" parameterClass="String">
+		DELETE FROM const_info WHERE (coi_name = #value#)
+	</delete>
+	<delete id="ConstInfo-DeleteByCoiRemark" parameterClass="String">
+		DELETE FROM const_info WHERE (coi_remark = #value#)
+	</delete>
+	<delete id="ConstInfo-DeleteByCoiCreatetime" parameterClass="java.util.Date">
+		DELETE FROM const_info WHERE (coi_createtime = #value#)
+	</delete>
+	
+	<select id="ConstInfo-Reload" parameterClass="ConstInfo" resultMap="ConstInfo-FullResultMap">
+		SELECT
+			coi_id
+			, coi_code
+			, coi_name
+			, coi_remark
+			, coi_createtime
+		FROM const_info
+		WHERE (coi_id = #coiId#)
+	</select>
+
+</sqlMap>

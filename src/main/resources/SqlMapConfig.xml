@@ -18,13 +18,9 @@
 	<settings cacheModelsEnabled="true" enhancementEnabled="false"
 		lazyLoadingEnabled="false" maxRequests="3000" maxSessions="3000"
 		maxTransactions="3000" useStatementNamespaces="false" />
-	<sqlMap resource="sqlmap/DataModel.BatisMap.xml" />
-	<sqlMap resource="sqlmap/Source.BatisMap.xml" />
-	<sqlMap resource="sqlmap/SourceSpider.BatisMap.xml" />
-	<sqlMap resource="sqlmap/SpiderColumn.BatisMap.xml" />
-	<sqlMap resource="sqlmap/SpideredUrl.BatisMap.xml" />
-	<sqlMap resource="sqlmap/SpiderRegTemplate.BatisMap.xml" />
-	<sqlMap resource="sqlmap/TestUrl.BatisMap.xml" />
-	<sqlMap resource="sqlmap/Template.BatisMap.xml" />
-	<sqlMap resource="sqlmap/TemplateDataModel.BatisMap.xml" />
+	<sqlMap resource="sqlmap/ConstInfo.BatisMap.xml" />
+	<sqlMap resource="sqlmap/DbInfo.BatisMap.xml" />
+	<sqlMap resource="sqlmap/TemplateConst.BatisMap.xml" />
+	<sqlMap resource="sqlmap/TemplateInfo.BatisMap.xml" />
+	<sqlMap resource="sqlmap/TemplateProject.BatisMap.xml" />
 </sqlMapConfig>

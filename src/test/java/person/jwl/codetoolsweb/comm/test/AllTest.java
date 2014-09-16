@@ -2,11 +2,18 @@ package person.jwl.codetoolsweb.comm.test;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import person.jwl.codetoolsweb.comm.SpringContext;
+import person.jwl.codetoolsweb.model.DbInfo;
+import person.jwl.codetoolsweb.service.intf.IDbInfoService;
 
 public class AllTest {
 
@@ -27,8 +34,11 @@ public class AllTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void test() throws SQLException {
+		//fail("Not yet implemented");
+		IDbInfoService service = SpringContext.getInstance().getBean("IDbInfoService", IDbInfoService.class);
+		List<DbInfo> list = service.FindAll();
+		System.out.println(list.size());
 	}
 
 }

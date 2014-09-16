@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="TemplateProject">
+
+	<typeAlias alias="TemplateProject" type="person.jwl.codetoolsweb.model.TemplateProject" />
+
+	<resultMap id="TemplateProject-FullResultMap" class="TemplateProject">
+		<result property="tpId" column="tp_id"/>
+		<result property="tpName" column="tp_name"/>
+		<result property="tpRemark" column="tp_remark"/>
+		<result property="tpOutinfo" column="tp_outinfo"/>
+		<result property="tpCreatetime" column="tp_createtime"/>
+	</resultMap>
+	<resultMap id="TemplateProject-NonLobResultMap" class="TemplateProject">
+		<result property="tpId" column="tp_id"/>
+		<result property="tpName" column="tp_name"/>
+		<result property="tpRemark" column="tp_remark"/>
+		<result property="tpCreatetime" column="tp_createtime"/>
+	</resultMap>
+
+	<select id="TemplateProject-GetCount" resultClass="Integer">
+		SELECT count(1) FROM template_project
+	</select>
+	
+	<select id="TemplateProject-FindAll" resultMap="TemplateProject-FullResultMap">
+		SELECT
+			tp_id
+			, tp_name
+			, tp_remark
+			, tp_outinfo
+			, tp_createtime
+		FROM template_project
+	</select>
+	<select id="TemplateProject-QuickFindAll" resultMap="TemplateProject-NonLobResultMap">
+		SELECT
+			tp_id
+			, tp_name
+			, tp_remark
+			, tp_createtime
+		FROM template_project
+	</select>
+	
+	<select id="TemplateProject-Find" parameterClass="Long" resultMap="TemplateProject-FullResultMap">
+		SELECT
+			tp_id
+			, tp_name
+			, tp_remark
+			, tp_outinfo
+		FROM template_project
+		WHERE
+			(tp_id = #tpId#)
+	</select>
+	<select id="TemplateProject-QuickFind" parameterClass="TemplateProject" resultMap="TemplateProject-NonLobResultMap">
+		SELECT
+			tp_id
+			, tp_name
+			, tp_remark
+			, tp_outinfo
+		FROM template_project
+		WHERE
+			(tp_id = #tpId#)
+	</select>
+	
+	<select id="TemplateProject-FindByTpName" parameterClass="String" resultMap="TemplateProject-FullResultMap">
+		SELECT
+			tp_id
+			, tp_name
+			, tp_remark
+			, tp_outinfo
+		FROM template_project
+		WHERE (tp_name = #value#)
+	</select>
+	<select id="TemplateProject-QuickFindByTpName" parameterClass="String" resultMap="TemplateProject-NonLobResultMap">
+		SELECT
+			tp_id
+			, tp_name
+			, tp_remark
+			, tp_outinfo
+		FROM template_project
+		WHERE (tp_name = #value#)
+	</select>
+	<select id="TemplateProject-FindByTpRemark" parameterClass="String" resultMap="TemplateProject-FullResultMap">
+		SELECT
+			tp_id
+			, tp_name
+			, tp_remark
+			, tp_outinfo
+		FROM template_project
+		WHERE (tp_remark = #value#)
+	</select>
+	<select id="TemplateProject-QuickFindByTpRemark" parameterClass="String" resultMap="TemplateProject-NonLobResultMap">
+		SELECT
+			tp_id
+			, tp_name
+			, tp_remark
+			, tp_outinfo
+		FROM template_project
+		WHERE (tp_remark = #value#)
+	</select>
+	<select id="TemplateProject-FindByTpCreatetime" parameterClass="java.util.Date" resultMap="TemplateProject-FullResultMap">
+		SELECT
+			tp_id
+			, tp_name
+			, tp_remark
+			, tp_outinfo
+		FROM template_project
+		WHERE (tp_createtime = #value#)
+	</select>
+	<select id="TemplateProject-QuickFindByTpCreatetime" parameterClass="java.util.Date" resultMap="TemplateProject-NonLobResultMap">
+		SELECT
+			tp_id
+			, tp_name
+			, tp_remark
+			, tp_outinfo
+		FROM template_project
+		WHERE (tp_createtime = #value#)
+	</select>
+	
+	<insert id="TemplateProject-Insert" parameterClass="TemplateProject">
+		INSERT INTO template_project (
+			 tp_id
+			, tp_name
+			, tp_remark
+			, tp_outinfo
+			, tp_createtime
+		) VALUES (
+			 #tpId#
+			, #tpName#
+			, #tpRemark#
+			, #tpOutinfo#
+			, #tpCreatetime#
+		)
+		<selectKey resultClass="Long" keyProperty="tpId" >
+			<!--select LAST_INSERT_ID() as value-->
+			select @@identity as value
+		</selectKey>
+	</insert>
+
+	<update id="TemplateProject-Update" parameterClass="TemplateProject">
+		UPDATE template_project SET
+			 tp_name = #tpName#
+			, tp_remark = #tpRemark#
+			, tp_outinfo = #tpOutinfo#
+			, tp_createtime = #tpCreatetime#
+		WHERE
+			(tp_id = #tpId#)
+	</update>
+
+	<delete id="TemplateProject-Delete" parameterClass="TemplateProject">
+		DELETE FROM template_project
+		WHERE
+			(tp_id = #tpId#)
+	</delete>
+
+	<delete id="TemplateProject-DeleteByTpName" parameterClass="String">
+		DELETE FROM template_project WHERE (tp_name = #value#)
+	</delete>
+	<delete id="TemplateProject-DeleteByTpRemark" parameterClass="String">
+		DELETE FROM template_project WHERE (tp_remark = #value#)
+	</delete>
+	<delete id="TemplateProject-DeleteByTpCreatetime" parameterClass="java.util.Date">
+		DELETE FROM template_project WHERE (tp_createtime = #value#)
+	</delete>
+	
+	<select id="TemplateProject-Reload" parameterClass="TemplateProject" resultMap="TemplateProject-FullResultMap">
+		SELECT
+			tp_id
+			, tp_name
+			, tp_remark
+			, tp_outinfo
+		FROM template_project
+		WHERE (tp_id = #tpId#)
+	</select>
+
+</sqlMap>

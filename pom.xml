@@ -311,12 +311,38 @@
 		<!-- ibatis end -->
 
 		<!-- sqlite driver Start -->
+		<!-- jdbc:sqlite://DRIVE:/dirA/dirB/dbfile -->
 		<dependency>
 		  <groupId>org.xerial</groupId>
 		  <artifactId>sqlite-jdbc</artifactId>
 		  <version>3.7.2</version>
 		</dependency>
 		<!-- sqlite driver End -->
+		
+		<!-- mysql driver Start -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.21</version>
+		</dependency>
+		<!-- mysql driver End -->
+		
+		<!-- sql server driver start -->
+		<!-- jdbc:jtds:sqlserver://localhost:1433/dbname -->
+	    <dependency>
+	      <groupId>net.sourceforge.jtds</groupId>
+	      <artifactId>jtds</artifactId>
+	      <version>1.2.4</version>
+	    </dependency>
+	    <!-- sql server driver end -->
+	    
+	    <!-- oracle driver start -->
+		<dependency>
+		  <groupId>com.oracle</groupId>
+		  <artifactId>ojdbc</artifactId>
+		  <version>6</version>
+		</dependency>
+		<!-- oracle driver end -->
 
 		<!-- dbcp jdbc pool Start -->
 		<dependency>

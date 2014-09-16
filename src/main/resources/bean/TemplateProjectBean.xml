@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- daobean Start -->
+	<bean id="TemplateProjectDao" class="person.jwl.codetoolsweb.dao.imp.TemplateProjectDao">
+		<property name="mapper">
+			<ref bean="sqlMapClient" />
+		</property>
+	</bean>
+	<!-- proxy -->
+	<bean id="ITemplateProjectDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>person.jwl.codetoolsweb.dao.intf.ITemplateProjectDao</value>
+		</property>
+		<property name="target">
+			<ref bean="TemplateProjectDao" />
+		</property>
+	</bean>
+	<!-- daobean End -->
+	<!-- serviebean Start -->
+	<bean name="TemplateProjectService" class="person.jwl.codetoolsweb.service.imp.TemplateProjectService">
+		<property name="TemplateProjectDao">
+			<ref bean="ITemplateProjectDao" />
+		</property>
+		<!-- <property name="MemcachedClient">
+			<ref bean="memcachedClient" />
+		</property> -->
+	</bean>
+	<!-- proxy,tran -->
+	<bean id="ITemplateProjectService" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="singleton">
+			<value>true</value>
+		</property>
+		<property name="proxyInterfaces">
+			<value>person.jwl.codetoolsweb.service.intf.ITemplateProjectService</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+				<value>TemplateProjectService</value>
+			</list>
+		</property>
+		<property name="proxyTargetClass">
+			<value>true</value>
+		</property>
+	</bean>
+	<!-- serviebean End -->
+</beans>
