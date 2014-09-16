@@ -122,21 +122,18 @@
 	
 	<insert id="TemplateProject-Insert" parameterClass="TemplateProject">
 		INSERT INTO template_project (
-			 tp_id
-			, tp_name
+			 tp_name
 			, tp_remark
 			, tp_outinfo
 			, tp_createtime
 		) VALUES (
-			 #tpId#
-			, #tpName#
+			 #tpName#
 			, #tpRemark#
 			, #tpOutinfo#
-			, #tpCreatetime#
+			, date('now')
 		)
-		<selectKey resultClass="Long" keyProperty="tpId" >
-			<!--select LAST_INSERT_ID() as value-->
-			select @@identity as value
+		<selectKey resultClass="Integer" keyProperty="tpId" >
+			select last_insert_rowid() as value
 		</selectKey>
 	</insert>
 
