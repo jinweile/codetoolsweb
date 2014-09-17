@@ -11,36 +11,36 @@ import java.math.BigDecimal;
 public class TemplateInfo implements Serializable {
     
 
-    private Integer tiId;
+    private Long tiId;
 	
 	/**
 	 *getter tiId
 	 */
-	public Integer getTiId() {
+	public Long getTiId() {
     	return tiId;
     }
 	
 	/**
 	 *setter tiId
 	 */
-	public void setTiId(Integer tiId) {
+	public void setTiId(Long tiId) {
     	this.tiId = tiId;
     }
 	
 
-    private Integer tpId;
+    private Long tpId;
 	
 	/**
 	 *getter tpId
 	 */
-	public Integer getTpId() {
+	public Long getTpId() {
     	return tpId;
     }
 	
 	/**
 	 *setter tpId
 	 */
-	public void setTpId(Integer tpId) {
+	public void setTpId(Long tpId) {
     	this.tpId = tpId;
     }
 	
@@ -79,19 +79,19 @@ public class TemplateInfo implements Serializable {
     }
 	
 
-    private Date tiCreatetime;
+    private Long tiCreatetime;
 	
 	/**
 	 *getter tiCreatetime
 	 */
-	public Date getTiCreatetime() {
+	public Long getTiCreatetime() {
     	return tiCreatetime;
     }
 	
 	/**
 	 *setter tiCreatetime
 	 */
-	public void setTiCreatetime(Date tiCreatetime) {
+	public void setTiCreatetime(Long tiCreatetime) {
     	this.tiCreatetime = tiCreatetime;
     }
 	

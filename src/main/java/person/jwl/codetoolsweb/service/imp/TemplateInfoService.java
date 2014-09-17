@@ -37,7 +37,7 @@ public class TemplateInfoService implements ITemplateInfoService {
 	/**
 	 *Implements ITemplateInfoService.Find
 	 */
-	public TemplateInfo Find(Integer tiId) throws SQLException {
+	public TemplateInfo Find(Long tiId) throws SQLException {
 		TemplateInfo result = dao.Find(tiId);
 		return result;
 	}
@@ -45,7 +45,7 @@ public class TemplateInfoService implements ITemplateInfoService {
 	/**
 	 *Implements ITemplateInfoService.QuickFind
 	 */
-	public TemplateInfo QuickFind(Integer tiId) throws SQLException {
+	public TemplateInfo QuickFind(Long tiId) throws SQLException {
 		TemplateInfo result = dao.QuickFind(tiId);
 		return result;
 	}
@@ -69,7 +69,7 @@ public class TemplateInfoService implements ITemplateInfoService {
 	/**
 	 *Implements ITemplateInfoService.FindByTpId
 	 */
-	public List<TemplateInfo> FindByTpId(Integer tpId) throws SQLException {
+	public List<TemplateInfo> FindByTpId(Long tpId) throws SQLException {
 		List<TemplateInfo> result = dao.FindByTpId(tpId);
 		return result;
 	}
@@ -77,7 +77,7 @@ public class TemplateInfoService implements ITemplateInfoService {
 	/**
 	 *Implements ITemplateInfoService.QuickFindByTpId
 	 */
-	public List<TemplateInfo> QuickFindByTpId(Integer tpId) throws SQLException {
+	public List<TemplateInfo> QuickFindByTpId(Long tpId) throws SQLException {
 		List<TemplateInfo> result = dao.QuickFindByTpId(tpId);
 		return result;
 	}
@@ -101,7 +101,7 @@ public class TemplateInfoService implements ITemplateInfoService {
 	/**
 	 *Implements ITemplateInfoService.FindByTiCreatetime
 	 */
-	public List<TemplateInfo> FindByTiCreatetime(Date tiCreatetime) throws SQLException {
+	public List<TemplateInfo> FindByTiCreatetime(Long tiCreatetime) throws SQLException {
 		List<TemplateInfo> result = dao.FindByTiCreatetime(tiCreatetime);
 		return result;
 	}
@@ -109,7 +109,7 @@ public class TemplateInfoService implements ITemplateInfoService {
 	/**
 	 *Implements ITemplateInfoService.QuickFindByTiCreatetime
 	 */
-	public List<TemplateInfo> QuickFindByTiCreatetime(Date tiCreatetime) throws SQLException {
+	public List<TemplateInfo> QuickFindByTiCreatetime(Long tiCreatetime) throws SQLException {
 		List<TemplateInfo> result = dao.QuickFindByTiCreatetime(tiCreatetime);
 		return result;
 	}
@@ -117,7 +117,7 @@ public class TemplateInfoService implements ITemplateInfoService {
 	/**
 	 *Implements ITemplateInfoService.Insert
 	 */
-	public Integer Insert(TemplateInfo obj) throws SQLException {
+	public Long Insert(TemplateInfo obj) throws SQLException {
 		if (obj == null) throw new NullPointerException("obj");
 		return dao.Insert(obj);
 	}
@@ -141,7 +141,7 @@ public class TemplateInfoService implements ITemplateInfoService {
 	/**
 	 *Implements ITemplateInfoService.DeleteByTpId
 	 */
-	public int DeleteByTpId(Integer tpId) throws SQLException {
+	public int DeleteByTpId(Long tpId) throws SQLException {
 		int result = dao.DeleteByTpId(tpId);
 		return result;
 	}
@@ -157,7 +157,7 @@ public class TemplateInfoService implements ITemplateInfoService {
 	/**
 	 *Implements ITemplateInfoService.DeleteByTiCreatetime
 	 */
-	public int DeleteByTiCreatetime(Date tiCreatetime) throws SQLException {
+	public int DeleteByTiCreatetime(Long tiCreatetime) throws SQLException {
 		int result = dao.DeleteByTiCreatetime(tiCreatetime);
 		return result;
 	}

@@ -38,7 +38,7 @@ public class TemplateConstDao implements ITemplateConstDao {
 	/**
 	 *Implements ITemplateConstDao.Find
 	 */
-	public TemplateConst Find(Integer tcId) throws SQLException {
+	public TemplateConst Find(Long tcId) throws SQLException {
 		String stmtId = "TemplateConst-Find";
 		TemplateConst result = (TemplateConst) mapper.queryForObject(stmtId, tcId);
 		return result;
@@ -68,7 +68,7 @@ public class TemplateConstDao implements ITemplateConstDao {
 	 *Implements ITemplateConstDao.FindByTiId
 	 */
 	@SuppressWarnings("unchecked")
-	public List<TemplateConst> FindByTiId(Integer tiId) throws SQLException {
+	public List<TemplateConst> FindByTiId(Long tiId) throws SQLException {
 		String stmtId = "TemplateConst-FindByTiId";
 		List<TemplateConst> result = mapper.queryForList(stmtId, tiId);
 		return result;
@@ -78,7 +78,7 @@ public class TemplateConstDao implements ITemplateConstDao {
 	 *Implements ITemplateConstDao.FindByCoiId
 	 */
 	@SuppressWarnings("unchecked")
-	public List<TemplateConst> FindByCoiId(Integer coiId) throws SQLException {
+	public List<TemplateConst> FindByCoiId(Long coiId) throws SQLException {
 		String stmtId = "TemplateConst-FindByCoiId";
 		List<TemplateConst> result = mapper.queryForList(stmtId, coiId);
 		return result;
@@ -87,10 +87,10 @@ public class TemplateConstDao implements ITemplateConstDao {
 	/**
 	 *Implements ITemplateConstDao.Insert
 	 */
-	public Integer Insert(TemplateConst obj) throws SQLException {
+	public Long Insert(TemplateConst obj) throws SQLException {
 		if (obj == null) throw new NullPointerException("obj");
 		String stmtId = "TemplateConst-Insert";
-		return (Integer) mapper.insert(stmtId, obj);
+		return (Long) mapper.insert(stmtId, obj);
 	}
 	
 	/**
@@ -114,7 +114,7 @@ public class TemplateConstDao implements ITemplateConstDao {
 	/**
 	 *Implements ITemplateConstDao.DeleteByTiId
 	 */
-	public int DeleteByTiId(Integer tiId) throws SQLException {
+	public int DeleteByTiId(Long tiId) throws SQLException {
 		String stmtId = "TemplateConst-DeleteByTiId";
 		int result = mapper.delete(stmtId, tiId);
 		return result;
@@ -123,7 +123,7 @@ public class TemplateConstDao implements ITemplateConstDao {
 	/**
 	 *Implements ITemplateConstDao.DeleteByCoiId
 	 */
-	public int DeleteByCoiId(Integer coiId) throws SQLException {
+	public int DeleteByCoiId(Long coiId) throws SQLException {
 		String stmtId = "TemplateConst-DeleteByCoiId";
 		int result = mapper.delete(stmtId, coiId);
 		return result;

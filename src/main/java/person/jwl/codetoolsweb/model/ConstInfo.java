@@ -11,19 +11,19 @@ import java.math.BigDecimal;
 public class ConstInfo implements Serializable {
     
 
-    private Integer coiId;
+    private Long coiId;
 	
 	/**
 	 *getter coiId
 	 */
-	public Integer getCoiId() {
+	public Long getCoiId() {
     	return coiId;
     }
 	
 	/**
 	 *setter coiId
 	 */
-	public void setCoiId(Integer coiId) {
+	public void setCoiId(Long coiId) {
     	this.coiId = coiId;
     }
 	
@@ -79,19 +79,19 @@ public class ConstInfo implements Serializable {
     }
 	
 
-    private Date coiCreatetime;
+    private Long coiCreatetime;
 	
 	/**
 	 *getter coiCreatetime
 	 */
-	public Date getCoiCreatetime() {
+	public Long getCoiCreatetime() {
     	return coiCreatetime;
     }
 	
 	/**
 	 *setter coiCreatetime
 	 */
-	public void setCoiCreatetime(Date coiCreatetime) {
+	public void setCoiCreatetime(Long coiCreatetime) {
     	this.coiCreatetime = coiCreatetime;
     }
 	

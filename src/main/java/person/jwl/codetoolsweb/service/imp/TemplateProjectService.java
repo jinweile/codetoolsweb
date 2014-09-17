@@ -37,7 +37,7 @@ public class TemplateProjectService implements ITemplateProjectService {
 	/**
 	 *Implements ITemplateProjectService.Find
 	 */
-	public TemplateProject Find(Integer tpId) throws SQLException {
+	public TemplateProject Find(Long tpId) throws SQLException {
 		TemplateProject result = dao.Find(tpId);
 		return result;
 	}
@@ -45,7 +45,7 @@ public class TemplateProjectService implements ITemplateProjectService {
 	/**
 	 *Implements ITemplateProjectService.QuickFind
 	 */
-	public TemplateProject QuickFind(Integer tpId) throws SQLException {
+	public TemplateProject QuickFind(Long tpId) throws SQLException {
 		TemplateProject result = dao.QuickFind(tpId);
 		return result;
 	}
@@ -101,7 +101,7 @@ public class TemplateProjectService implements ITemplateProjectService {
 	/**
 	 *Implements ITemplateProjectService.FindByTpCreatetime
 	 */
-	public List<TemplateProject> FindByTpCreatetime(Date tpCreatetime) throws SQLException {
+	public List<TemplateProject> FindByTpCreatetime(Long tpCreatetime) throws SQLException {
 		List<TemplateProject> result = dao.FindByTpCreatetime(tpCreatetime);
 		return result;
 	}
@@ -109,7 +109,7 @@ public class TemplateProjectService implements ITemplateProjectService {
 	/**
 	 *Implements ITemplateProjectService.QuickFindByTpCreatetime
 	 */
-	public List<TemplateProject> QuickFindByTpCreatetime(Date tpCreatetime) throws SQLException {
+	public List<TemplateProject> QuickFindByTpCreatetime(Long tpCreatetime) throws SQLException {
 		List<TemplateProject> result = dao.QuickFindByTpCreatetime(tpCreatetime);
 		return result;
 	}
@@ -117,7 +117,7 @@ public class TemplateProjectService implements ITemplateProjectService {
 	/**
 	 *Implements ITemplateProjectService.Insert
 	 */
-	public Integer Insert(TemplateProject obj) throws SQLException {
+	public Long Insert(TemplateProject obj) throws SQLException {
 		if (obj == null) throw new NullPointerException("obj");
 		return dao.Insert(obj);
 	}
@@ -157,7 +157,7 @@ public class TemplateProjectService implements ITemplateProjectService {
 	/**
 	 *Implements ITemplateProjectService.DeleteByTpCreatetime
 	 */
-	public int DeleteByTpCreatetime(Date tpCreatetime) throws SQLException {
+	public int DeleteByTpCreatetime(Long tpCreatetime) throws SQLException {
 		int result = dao.DeleteByTpCreatetime(tpCreatetime);
 		return result;
 	}

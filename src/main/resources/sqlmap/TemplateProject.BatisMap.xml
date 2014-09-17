@@ -101,7 +101,7 @@
 		FROM template_project
 		WHERE (tp_remark = #value#)
 	</select>
-	<select id="TemplateProject-FindByTpCreatetime" parameterClass="java.util.Date" resultMap="TemplateProject-FullResultMap">
+	<select id="TemplateProject-FindByTpCreatetime" parameterClass="Long" resultMap="TemplateProject-FullResultMap">
 		SELECT
 			tp_id
 			, tp_name
@@ -110,7 +110,7 @@
 		FROM template_project
 		WHERE (tp_createtime = #value#)
 	</select>
-	<select id="TemplateProject-QuickFindByTpCreatetime" parameterClass="java.util.Date" resultMap="TemplateProject-NonLobResultMap">
+	<select id="TemplateProject-QuickFindByTpCreatetime" parameterClass="Long" resultMap="TemplateProject-NonLobResultMap">
 		SELECT
 			tp_id
 			, tp_name
@@ -121,22 +121,28 @@
 	</select>
 	
 	<insert id="TemplateProject-Insert" parameterClass="TemplateProject">
+        <!--oracle-->
+        <!--<selectKey keyProperty="innerUserID" resultType="Long" order="BEFORE">
+          select SQ_ADMIN_SEQ.nextval from dual
+        </selectKey>-->
 		INSERT INTO template_project (
-			 tp_id
-			, tp_name
+			 tp_name
 			, tp_remark
 			, tp_outinfo
 			, tp_createtime
 		) VALUES (
-			 #tpId#
-			, #tpName#
+			 #tpName#
 			, #tpRemark#
 			, #tpOutinfo#
 			, #tpCreatetime#
 		)
 		<selectKey resultClass="Long" keyProperty="tpId" >
+            <!--sqlite-->
+            select last_insert_rowid() as value
+            <!--mysql-->
 			<!--select LAST_INSERT_ID() as value-->
-			select @@identity as value
+            <!--sqlserver-->
+			<!--select @@identity as value-->
 		</selectKey>
 	</insert>
 
@@ -162,7 +168,7 @@
 	<delete id="TemplateProject-DeleteByTpRemark" parameterClass="String">
 		DELETE FROM template_project WHERE (tp_remark = #value#)
 	</delete>
-	<delete id="TemplateProject-DeleteByTpCreatetime" parameterClass="java.util.Date">
+	<delete id="TemplateProject-DeleteByTpCreatetime" parameterClass="Long">
 		DELETE FROM template_project WHERE (tp_createtime = #value#)
 	</delete>
 	

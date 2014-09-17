@@ -38,7 +38,7 @@ public class DbInfoDao implements IDbInfoDao {
 	/**
 	 *Implements IDbInfoDao.Find
 	 */
-	public DbInfo Find(Integer diId) throws SQLException {
+	public DbInfo Find(Long diId) throws SQLException {
 		String stmtId = "DbInfo-Find";
 		DbInfo result = (DbInfo) mapper.queryForObject(stmtId, diId);
 		return result;
@@ -47,7 +47,7 @@ public class DbInfoDao implements IDbInfoDao {
 	/**
 	 *Implements IDbInfoDao.QuickFind
 	 */
-	public DbInfo QuickFind(Integer diId) throws SQLException {
+	public DbInfo QuickFind(Long diId) throws SQLException {
 		String stmtId = "DbInfo-QuickFind";
 		DbInfo result = (DbInfo) mapper.queryForObject(stmtId, diId);
 		return result;
@@ -137,7 +137,7 @@ public class DbInfoDao implements IDbInfoDao {
 	 *Implements IDbInfoDao.FindByDiCreatetime
 	 */
 	@SuppressWarnings("unchecked")
-	public List<DbInfo> FindByDiCreatetime(Date diCreatetime) throws SQLException {
+	public List<DbInfo> FindByDiCreatetime(Long diCreatetime) throws SQLException {
 		String stmtId = "DbInfo-FindByDiCreatetime";
 		List<DbInfo> result = mapper.queryForList(stmtId, diCreatetime);
 		return result;
@@ -147,7 +147,7 @@ public class DbInfoDao implements IDbInfoDao {
 	 *Implements IDbInfoDao.QuickFindByDiCreatetime
 	 */
 	@SuppressWarnings("unchecked")
-	public List<DbInfo> QuickFindByDiCreatetime(Date diCreatetime) throws SQLException {
+	public List<DbInfo> QuickFindByDiCreatetime(Long diCreatetime) throws SQLException {
 		String stmtId = "DbInfo-QuickFindByDiCreatetime";
 		List<DbInfo> result = mapper.queryForList(stmtId, diCreatetime);
 		return result;
@@ -156,10 +156,10 @@ public class DbInfoDao implements IDbInfoDao {
 	/**
 	 *Implements IDbInfoDao.Insert
 	 */
-	public Integer Insert(DbInfo obj) throws SQLException {
+	public Long Insert(DbInfo obj) throws SQLException {
 		if (obj == null) throw new NullPointerException("obj");
 		String stmtId = "DbInfo-Insert";
-		return (Integer) mapper.insert(stmtId, obj);
+		return (Long) mapper.insert(stmtId, obj);
 	}
 	
 	/**
@@ -210,7 +210,7 @@ public class DbInfoDao implements IDbInfoDao {
 	/**
 	 *Implements IDbInfoDao.DeleteByDiCreatetime
 	 */
-	public int DeleteByDiCreatetime(Date diCreatetime) throws SQLException {
+	public int DeleteByDiCreatetime(Long diCreatetime) throws SQLException {
 		String stmtId = "DbInfo-DeleteByDiCreatetime";
 		int result = mapper.delete(stmtId, diCreatetime);
 		return result;

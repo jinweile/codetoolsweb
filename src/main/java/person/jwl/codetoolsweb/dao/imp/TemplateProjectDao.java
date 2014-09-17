@@ -38,7 +38,7 @@ public class TemplateProjectDao implements ITemplateProjectDao {
 	/**
 	 *Implements ITemplateProjectDao.Find
 	 */
-	public TemplateProject Find(Integer tpId) throws SQLException {
+	public TemplateProject Find(Long tpId) throws SQLException {
 		String stmtId = "TemplateProject-Find";
 		TemplateProject result = (TemplateProject) mapper.queryForObject(stmtId, tpId);
 		return result;
@@ -47,7 +47,7 @@ public class TemplateProjectDao implements ITemplateProjectDao {
 	/**
 	 *Implements ITemplateProjectDao.QuickFind
 	 */
-	public TemplateProject QuickFind(Integer tpId) throws SQLException {
+	public TemplateProject QuickFind(Long tpId) throws SQLException {
 		String stmtId = "TemplateProject-QuickFind";
 		TemplateProject result = (TemplateProject) mapper.queryForObject(stmtId, tpId);
 		return result;
@@ -117,7 +117,7 @@ public class TemplateProjectDao implements ITemplateProjectDao {
 	 *Implements ITemplateProjectDao.FindByTpCreatetime
 	 */
 	@SuppressWarnings("unchecked")
-	public List<TemplateProject> FindByTpCreatetime(Date tpCreatetime) throws SQLException {
+	public List<TemplateProject> FindByTpCreatetime(Long tpCreatetime) throws SQLException {
 		String stmtId = "TemplateProject-FindByTpCreatetime";
 		List<TemplateProject> result = mapper.queryForList(stmtId, tpCreatetime);
 		return result;
@@ -127,7 +127,7 @@ public class TemplateProjectDao implements ITemplateProjectDao {
 	 *Implements ITemplateProjectDao.QuickFindByTpCreatetime
 	 */
 	@SuppressWarnings("unchecked")
-	public List<TemplateProject> QuickFindByTpCreatetime(Date tpCreatetime) throws SQLException {
+	public List<TemplateProject> QuickFindByTpCreatetime(Long tpCreatetime) throws SQLException {
 		String stmtId = "TemplateProject-QuickFindByTpCreatetime";
 		List<TemplateProject> result = mapper.queryForList(stmtId, tpCreatetime);
 		return result;
@@ -136,10 +136,10 @@ public class TemplateProjectDao implements ITemplateProjectDao {
 	/**
 	 *Implements ITemplateProjectDao.Insert
 	 */
-	public Integer Insert(TemplateProject obj) throws SQLException {
+	public Long Insert(TemplateProject obj) throws SQLException {
 		if (obj == null) throw new NullPointerException("obj");
 		String stmtId = "TemplateProject-Insert";
-		return (Integer) mapper.insert(stmtId, obj);
+		return (Long) mapper.insert(stmtId, obj);
 	}
 	
 	/**
@@ -181,7 +181,7 @@ public class TemplateProjectDao implements ITemplateProjectDao {
 	/**
 	 *Implements ITemplateProjectDao.DeleteByTpCreatetime
 	 */
-	public int DeleteByTpCreatetime(Date tpCreatetime) throws SQLException {
+	public int DeleteByTpCreatetime(Long tpCreatetime) throws SQLException {
 		String stmtId = "TemplateProject-DeleteByTpCreatetime";
 		int result = mapper.delete(stmtId, tpCreatetime);
 		return result;

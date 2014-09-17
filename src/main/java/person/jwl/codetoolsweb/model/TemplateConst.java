@@ -11,53 +11,53 @@ import java.math.BigDecimal;
 public class TemplateConst implements Serializable {
     
 
-    private Integer tcId;
+    private Long tcId;
 	
 	/**
 	 *getter tcId
 	 */
-	public Integer getTcId() {
+	public Long getTcId() {
     	return tcId;
     }
 	
 	/**
 	 *setter tcId
 	 */
-	public void setTcId(Integer tcId) {
+	public void setTcId(Long tcId) {
     	this.tcId = tcId;
     }
 	
 
-    private Integer tiId;
+    private Long tiId;
 	
 	/**
 	 *getter tiId
 	 */
-	public Integer getTiId() {
+	public Long getTiId() {
     	return tiId;
     }
 	
 	/**
 	 *setter tiId
 	 */
-	public void setTiId(Integer tiId) {
+	public void setTiId(Long tiId) {
     	this.tiId = tiId;
     }
 	
 
-    private Integer coiId;
+    private Long coiId;
 	
 	/**
 	 *getter coiId
 	 */
-	public Integer getCoiId() {
+	public Long getCoiId() {
     	return coiId;
     }
 	
 	/**
 	 *setter coiId
 	 */
-	public void setCoiId(Integer coiId) {
+	public void setCoiId(Long coiId) {
     	this.coiId = coiId;
     }
 	

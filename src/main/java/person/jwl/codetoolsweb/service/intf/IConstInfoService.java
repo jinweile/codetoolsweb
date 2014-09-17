@@ -21,7 +21,7 @@ public interface IConstInfoService {
 	/**
 	 *Finds a ConstInfo instance by the primary key value
 	 */
-	ConstInfo Find(Integer coiId) throws SQLException;
+	ConstInfo Find(Long coiId) throws SQLException;
 
 	/**
 	 *Finds all ConstInfo instances.
@@ -51,12 +51,12 @@ public interface IConstInfoService {
 	/**
 	 *Finds ConstInfo instances by CoiCreatetime value.
 	 */
-	List<ConstInfo> FindByCoiCreatetime(Date coiCreatetime) throws SQLException;
+	List<ConstInfo> FindByCoiCreatetime(Long coiCreatetime) throws SQLException;
 	
 	/**
 	 *Inserts a new ConstInfo instance into underlying database table.
 	 */
-	Integer Insert(ConstInfo obj) throws SQLException;
+	Long Insert(ConstInfo obj) throws SQLException;
 	
 	/**
 	 *Update the underlying database record of a ConstInfo instance.
@@ -86,7 +86,7 @@ public interface IConstInfoService {
     /**
 	 *Deletes ConstInfo instances by ConstInfo.CoiCreatetime.
 	 */
-	int DeleteByCoiCreatetime(Date coiCreatetime) throws SQLException;
+	int DeleteByCoiCreatetime(Long coiCreatetime) throws SQLException;
 	
 	/**
 	 *Reload the underlying database record of a ConstInfo instance.

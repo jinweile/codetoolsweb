@@ -37,7 +37,7 @@ public class TemplateConstService implements ITemplateConstService {
 	/**
 	 *Implements ITemplateConstService.Find
 	 */
-	public TemplateConst Find(Integer tcId) throws SQLException {
+	public TemplateConst Find(Long tcId) throws SQLException {
 		TemplateConst result = dao.Find(tcId);
 		return result;
 	}
@@ -61,7 +61,7 @@ public class TemplateConstService implements ITemplateConstService {
 	/**
 	 *Implements ITemplateConstService.FindByTiId
 	 */
-	public List<TemplateConst> FindByTiId(Integer tiId) throws SQLException {
+	public List<TemplateConst> FindByTiId(Long tiId) throws SQLException {
 		List<TemplateConst> result = dao.FindByTiId(tiId);
 		return result;
 	}
@@ -69,7 +69,7 @@ public class TemplateConstService implements ITemplateConstService {
 	/**
 	 *Implements ITemplateConstService.FindByCoiId
 	 */
-	public List<TemplateConst> FindByCoiId(Integer coiId) throws SQLException {
+	public List<TemplateConst> FindByCoiId(Long coiId) throws SQLException {
 		List<TemplateConst> result = dao.FindByCoiId(coiId);
 		return result;
 	}
@@ -77,7 +77,7 @@ public class TemplateConstService implements ITemplateConstService {
 	/**
 	 *Implements ITemplateConstService.Insert
 	 */
-	public Integer Insert(TemplateConst obj) throws SQLException {
+	public Long Insert(TemplateConst obj) throws SQLException {
 		if (obj == null) throw new NullPointerException("obj");
 		return dao.Insert(obj);
 	}
@@ -101,7 +101,7 @@ public class TemplateConstService implements ITemplateConstService {
 	/**
 	 *Implements ITemplateConstService.DeleteByTiId
 	 */
-	public int DeleteByTiId(Integer tiId) throws SQLException {
+	public int DeleteByTiId(Long tiId) throws SQLException {
 		int result = dao.DeleteByTiId(tiId);
 		return result;
 	}
@@ -109,7 +109,7 @@ public class TemplateConstService implements ITemplateConstService {
 	/**
 	 *Implements ITemplateConstService.DeleteByCoiId
 	 */
-	public int DeleteByCoiId(Integer coiId) throws SQLException {
+	public int DeleteByCoiId(Long coiId) throws SQLException {
 		int result = dao.DeleteByCoiId(coiId);
 		return result;
 	}

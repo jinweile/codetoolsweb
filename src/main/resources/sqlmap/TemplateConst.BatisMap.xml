@@ -54,18 +54,24 @@
 	</select>
 	
 	<insert id="TemplateConst-Insert" parameterClass="TemplateConst">
+        <!--oracle-->
+        <!--<selectKey keyProperty="innerUserID" resultType="Long" order="BEFORE">
+          select SQ_ADMIN_SEQ.nextval from dual
+        </selectKey>-->
 		INSERT INTO template_const (
-			 tc_id
-			, ti_id
+			 ti_id
 			, coi_id
 		) VALUES (
-			 #tcId#
-			, #tiId#
+			 #tiId#
 			, #coiId#
 		)
 		<selectKey resultClass="Long" keyProperty="tcId" >
+            <!--sqlite-->
+            select last_insert_rowid() as value
+            <!--mysql-->
 			<!--select LAST_INSERT_ID() as value-->
-			select @@identity as value
+            <!--sqlserver-->
+			<!--select @@identity as value-->
 		</selectKey>
 	</insert>
 

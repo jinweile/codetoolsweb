@@ -38,7 +38,7 @@ public class TemplateInfoDao implements ITemplateInfoDao {
 	/**
 	 *Implements ITemplateInfoDao.Find
 	 */
-	public TemplateInfo Find(Integer tiId) throws SQLException {
+	public TemplateInfo Find(Long tiId) throws SQLException {
 		String stmtId = "TemplateInfo-Find";
 		TemplateInfo result = (TemplateInfo) mapper.queryForObject(stmtId, tiId);
 		return result;
@@ -47,7 +47,7 @@ public class TemplateInfoDao implements ITemplateInfoDao {
 	/**
 	 *Implements ITemplateInfoDao.QuickFind
 	 */
-	public TemplateInfo QuickFind(Integer tiId) throws SQLException {
+	public TemplateInfo QuickFind(Long tiId) throws SQLException {
 		String stmtId = "TemplateInfo-QuickFind";
 		TemplateInfo result = (TemplateInfo) mapper.queryForObject(stmtId, tiId);
 		return result;
@@ -77,7 +77,7 @@ public class TemplateInfoDao implements ITemplateInfoDao {
 	 *Implements ITemplateInfoDao.FindByTpId
 	 */
 	@SuppressWarnings("unchecked")
-	public List<TemplateInfo> FindByTpId(Integer tpId) throws SQLException {
+	public List<TemplateInfo> FindByTpId(Long tpId) throws SQLException {
 		String stmtId = "TemplateInfo-FindByTpId";
 		List<TemplateInfo> result = mapper.queryForList(stmtId, tpId);
 		return result;
@@ -87,7 +87,7 @@ public class TemplateInfoDao implements ITemplateInfoDao {
 	 *Implements ITemplateInfoDao.QuickFindByTpId
 	 */
 	@SuppressWarnings("unchecked")
-	public List<TemplateInfo> QuickFindByTpId(Integer tpId) throws SQLException {
+	public List<TemplateInfo> QuickFindByTpId(Long tpId) throws SQLException {
 		String stmtId = "TemplateInfo-QuickFindByTpId";
 		List<TemplateInfo> result = mapper.queryForList(stmtId, tpId);
 		return result;
@@ -117,7 +117,7 @@ public class TemplateInfoDao implements ITemplateInfoDao {
 	 *Implements ITemplateInfoDao.FindByTiCreatetime
 	 */
 	@SuppressWarnings("unchecked")
-	public List<TemplateInfo> FindByTiCreatetime(Date tiCreatetime) throws SQLException {
+	public List<TemplateInfo> FindByTiCreatetime(Long tiCreatetime) throws SQLException {
 		String stmtId = "TemplateInfo-FindByTiCreatetime";
 		List<TemplateInfo> result = mapper.queryForList(stmtId, tiCreatetime);
 		return result;
@@ -127,7 +127,7 @@ public class TemplateInfoDao implements ITemplateInfoDao {
 	 *Implements ITemplateInfoDao.QuickFindByTiCreatetime
 	 */
 	@SuppressWarnings("unchecked")
-	public List<TemplateInfo> QuickFindByTiCreatetime(Date tiCreatetime) throws SQLException {
+	public List<TemplateInfo> QuickFindByTiCreatetime(Long tiCreatetime) throws SQLException {
 		String stmtId = "TemplateInfo-QuickFindByTiCreatetime";
 		List<TemplateInfo> result = mapper.queryForList(stmtId, tiCreatetime);
 		return result;
@@ -136,10 +136,10 @@ public class TemplateInfoDao implements ITemplateInfoDao {
 	/**
 	 *Implements ITemplateInfoDao.Insert
 	 */
-	public Integer Insert(TemplateInfo obj) throws SQLException {
+	public Long Insert(TemplateInfo obj) throws SQLException {
 		if (obj == null) throw new NullPointerException("obj");
 		String stmtId = "TemplateInfo-Insert";
-		return (Integer) mapper.insert(stmtId, obj);
+		return (Long) mapper.insert(stmtId, obj);
 	}
 	
 	/**
@@ -163,7 +163,7 @@ public class TemplateInfoDao implements ITemplateInfoDao {
 	/**
 	 *Implements ITemplateInfoDao.DeleteByTpId
 	 */
-	public int DeleteByTpId(Integer tpId) throws SQLException {
+	public int DeleteByTpId(Long tpId) throws SQLException {
 		String stmtId = "TemplateInfo-DeleteByTpId";
 		int result = mapper.delete(stmtId, tpId);
 		return result;
@@ -181,7 +181,7 @@ public class TemplateInfoDao implements ITemplateInfoDao {
 	/**
 	 *Implements ITemplateInfoDao.DeleteByTiCreatetime
 	 */
-	public int DeleteByTiCreatetime(Date tiCreatetime) throws SQLException {
+	public int DeleteByTiCreatetime(Long tiCreatetime) throws SQLException {
 		String stmtId = "TemplateInfo-DeleteByTiCreatetime";
 		int result = mapper.delete(stmtId, tiCreatetime);
 		return result;

@@ -21,12 +21,12 @@ public interface ITemplateInfoDao {
 	/**
 	 *Finds a TemplateInfo instance by the primary key value
 	 */
-	TemplateInfo Find(Integer tiId) throws SQLException;
+	TemplateInfo Find(Long tiId) throws SQLException;
 
 	/**
 	 *Finds a TemplateInfo instance by the primary key value without Lob columns loaded
 	 */
-	TemplateInfo QuickFind(Integer tiId) throws SQLException;
+	TemplateInfo QuickFind(Long tiId) throws SQLException;
 	
 	/**
 	 *Finds all TemplateInfo instances.
@@ -41,12 +41,12 @@ public interface ITemplateInfoDao {
 	/**
 	 *Finds TemplateInfo instances by TpId value.
 	 */
-	List<TemplateInfo> FindByTpId(Integer tpId) throws SQLException;
+	List<TemplateInfo> FindByTpId(Long tpId) throws SQLException;
 	
 	/**
 	 *Finds TemplateInfo instances by TpId value without Lob columns loaded.
 	 */
-	List<TemplateInfo> QuickFindByTpId(Integer tpId) throws SQLException;
+	List<TemplateInfo> QuickFindByTpId(Long tpId) throws SQLException;
 	
 	/**
 	 *Finds TemplateInfo instances by TiName value.
@@ -61,17 +61,17 @@ public interface ITemplateInfoDao {
 	/**
 	 *Finds TemplateInfo instances by TiCreatetime value.
 	 */
-	List<TemplateInfo> FindByTiCreatetime(Date tiCreatetime) throws SQLException;
+	List<TemplateInfo> FindByTiCreatetime(Long tiCreatetime) throws SQLException;
 	
 	/**
 	 *Finds TemplateInfo instances by TiCreatetime value without Lob columns loaded.
 	 */
-	List<TemplateInfo> QuickFindByTiCreatetime(Date tiCreatetime) throws SQLException;
+	List<TemplateInfo> QuickFindByTiCreatetime(Long tiCreatetime) throws SQLException;
 	
 	/**
 	 *Inserts a new TemplateInfo instance into underlying database table.
 	 */
-	Integer Insert(TemplateInfo obj) throws SQLException;
+	Long Insert(TemplateInfo obj) throws SQLException;
 	
 	/**
 	 *Update the underlying database record of a TemplateInfo instance.
@@ -86,7 +86,7 @@ public interface ITemplateInfoDao {
     /**
 	 *Deletes TemplateInfo instances by TemplateInfo.TpId.
 	 */
-	int DeleteByTpId(Integer tpId) throws SQLException;
+	int DeleteByTpId(Long tpId) throws SQLException;
 	
     /**
 	 *Deletes TemplateInfo instances by TemplateInfo.TiName.
@@ -96,7 +96,7 @@ public interface ITemplateInfoDao {
     /**
 	 *Deletes TemplateInfo instances by TemplateInfo.TiCreatetime.
 	 */
-	int DeleteByTiCreatetime(Date tiCreatetime) throws SQLException;
+	int DeleteByTiCreatetime(Long tiCreatetime) throws SQLException;
 	
 	/**
 	 *Reload the underlying database record of a TemplateInfo instance.

@@ -21,12 +21,12 @@ public interface ITemplateProjectDao {
 	/**
 	 *Finds a TemplateProject instance by the primary key value
 	 */
-	TemplateProject Find(Integer tpId) throws SQLException;
+	TemplateProject Find(Long tpId) throws SQLException;
 
 	/**
 	 *Finds a TemplateProject instance by the primary key value without Lob columns loaded
 	 */
-	TemplateProject QuickFind(Integer tpId) throws SQLException;
+	TemplateProject QuickFind(Long tpId) throws SQLException;
 	
 	/**
 	 *Finds all TemplateProject instances.
@@ -61,17 +61,17 @@ public interface ITemplateProjectDao {
 	/**
 	 *Finds TemplateProject instances by TpCreatetime value.
 	 */
-	List<TemplateProject> FindByTpCreatetime(Date tpCreatetime) throws SQLException;
+	List<TemplateProject> FindByTpCreatetime(Long tpCreatetime) throws SQLException;
 	
 	/**
 	 *Finds TemplateProject instances by TpCreatetime value without Lob columns loaded.
 	 */
-	List<TemplateProject> QuickFindByTpCreatetime(Date tpCreatetime) throws SQLException;
+	List<TemplateProject> QuickFindByTpCreatetime(Long tpCreatetime) throws SQLException;
 	
 	/**
 	 *Inserts a new TemplateProject instance into underlying database table.
 	 */
-	Integer Insert(TemplateProject obj) throws SQLException;
+	Long Insert(TemplateProject obj) throws SQLException;
 	
 	/**
 	 *Update the underlying database record of a TemplateProject instance.
@@ -96,7 +96,7 @@ public interface ITemplateProjectDao {
     /**
 	 *Deletes TemplateProject instances by TemplateProject.TpCreatetime.
 	 */
-	int DeleteByTpCreatetime(Date tpCreatetime) throws SQLException;
+	int DeleteByTpCreatetime(Long tpCreatetime) throws SQLException;
 	
 	/**
 	 *Reload the underlying database record of a TemplateProject instance.

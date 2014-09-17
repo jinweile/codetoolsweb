@@ -37,7 +37,7 @@ public class DbInfoService implements IDbInfoService {
 	/**
 	 *Implements IDbInfoService.Find
 	 */
-	public DbInfo Find(Integer diId) throws SQLException {
+	public DbInfo Find(Long diId) throws SQLException {
 		DbInfo result = dao.Find(diId);
 		return result;
 	}
@@ -45,7 +45,7 @@ public class DbInfoService implements IDbInfoService {
 	/**
 	 *Implements IDbInfoService.QuickFind
 	 */
-	public DbInfo QuickFind(Integer diId) throws SQLException {
+	public DbInfo QuickFind(Long diId) throws SQLException {
 		DbInfo result = dao.QuickFind(diId);
 		return result;
 	}
@@ -117,7 +117,7 @@ public class DbInfoService implements IDbInfoService {
 	/**
 	 *Implements IDbInfoService.FindByDiCreatetime
 	 */
-	public List<DbInfo> FindByDiCreatetime(Date diCreatetime) throws SQLException {
+	public List<DbInfo> FindByDiCreatetime(Long diCreatetime) throws SQLException {
 		List<DbInfo> result = dao.FindByDiCreatetime(diCreatetime);
 		return result;
 	}
@@ -125,7 +125,7 @@ public class DbInfoService implements IDbInfoService {
 	/**
 	 *Implements IDbInfoService.QuickFindByDiCreatetime
 	 */
-	public List<DbInfo> QuickFindByDiCreatetime(Date diCreatetime) throws SQLException {
+	public List<DbInfo> QuickFindByDiCreatetime(Long diCreatetime) throws SQLException {
 		List<DbInfo> result = dao.QuickFindByDiCreatetime(diCreatetime);
 		return result;
 	}
@@ -133,7 +133,7 @@ public class DbInfoService implements IDbInfoService {
 	/**
 	 *Implements IDbInfoService.Insert
 	 */
-	public Integer Insert(DbInfo obj) throws SQLException {
+	public Long Insert(DbInfo obj) throws SQLException {
 		if (obj == null) throw new NullPointerException("obj");
 		return dao.Insert(obj);
 	}
@@ -181,7 +181,7 @@ public class DbInfoService implements IDbInfoService {
 	/**
 	 *Implements IDbInfoService.DeleteByDiCreatetime
 	 */
-	public int DeleteByDiCreatetime(Date diCreatetime) throws SQLException {
+	public int DeleteByDiCreatetime(Long diCreatetime) throws SQLException {
 		int result = dao.DeleteByDiCreatetime(diCreatetime);
 		return result;
 	}

@@ -72,7 +72,7 @@
 		FROM const_info
 		WHERE (coi_remark = #value#)
 	</select>
-	<select id="ConstInfo-FindByCoiCreatetime" parameterClass="java.util.Date" resultMap="ConstInfo-FullResultMap">
+	<select id="ConstInfo-FindByCoiCreatetime" parameterClass="Long" resultMap="ConstInfo-FullResultMap">
 		SELECT
 			coi_id
 			, coi_code
@@ -84,22 +84,28 @@
 	</select>
 	
 	<insert id="ConstInfo-Insert" parameterClass="ConstInfo">
+        <!--oracle-->
+        <!--<selectKey keyProperty="innerUserID" resultType="Long" order="BEFORE">
+          select SQ_ADMIN_SEQ.nextval from dual
+        </selectKey>-->
 		INSERT INTO const_info (
-			 coi_id
-			, coi_code
+			 coi_code
 			, coi_name
 			, coi_remark
 			, coi_createtime
 		) VALUES (
-			 #coiId#
-			, #coiCode#
+			 #coiCode#
 			, #coiName#
 			, #coiRemark#
 			, #coiCreatetime#
 		)
 		<selectKey resultClass="Long" keyProperty="coiId" >
+            <!--sqlite-->
+            select last_insert_rowid() as value
+            <!--mysql-->
 			<!--select LAST_INSERT_ID() as value-->
-			select @@identity as value
+            <!--sqlserver-->
+			<!--select @@identity as value-->
 		</selectKey>
 	</insert>
 
@@ -128,7 +134,7 @@
 	<delete id="ConstInfo-DeleteByCoiRemark" parameterClass="String">
 		DELETE FROM const_info WHERE (coi_remark = #value#)
 	</delete>
-	<delete id="ConstInfo-DeleteByCoiCreatetime" parameterClass="java.util.Date">
+	<delete id="ConstInfo-DeleteByCoiCreatetime" parameterClass="Long">
 		DELETE FROM const_info WHERE (coi_createtime = #value#)
 	</delete>
 	

@@ -37,7 +37,7 @@ public class ConstInfoService implements IConstInfoService {
 	/**
 	 *Implements IConstInfoService.Find
 	 */
-	public ConstInfo Find(Integer coiId) throws SQLException {
+	public ConstInfo Find(Long coiId) throws SQLException {
 		ConstInfo result = dao.Find(coiId);
 		return result;
 	}
@@ -85,7 +85,7 @@ public class ConstInfoService implements IConstInfoService {
 	/**
 	 *Implements IConstInfoService.FindByCoiCreatetime
 	 */
-	public List<ConstInfo> FindByCoiCreatetime(Date coiCreatetime) throws SQLException {
+	public List<ConstInfo> FindByCoiCreatetime(Long coiCreatetime) throws SQLException {
 		List<ConstInfo> result = dao.FindByCoiCreatetime(coiCreatetime);
 		return result;
 	}
@@ -93,7 +93,7 @@ public class ConstInfoService implements IConstInfoService {
 	/**
 	 *Implements IConstInfoService.Insert
 	 */
-	public Integer Insert(ConstInfo obj) throws SQLException {
+	public Long Insert(ConstInfo obj) throws SQLException {
 		if (obj == null) throw new NullPointerException("obj");
 		return dao.Insert(obj);
 	}
@@ -141,7 +141,7 @@ public class ConstInfoService implements IConstInfoService {
 	/**
 	 *Implements IConstInfoService.DeleteByCoiCreatetime
 	 */
-	public int DeleteByCoiCreatetime(Date coiCreatetime) throws SQLException {
+	public int DeleteByCoiCreatetime(Long coiCreatetime) throws SQLException {
 		int result = dao.DeleteByCoiCreatetime(coiCreatetime);
 		return result;
 	}

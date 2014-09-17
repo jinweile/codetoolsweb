@@ -38,7 +38,7 @@ public class ConstInfoDao implements IConstInfoDao {
 	/**
 	 *Implements IConstInfoDao.Find
 	 */
-	public ConstInfo Find(Integer coiId) throws SQLException {
+	public ConstInfo Find(Long coiId) throws SQLException {
 		String stmtId = "ConstInfo-Find";
 		ConstInfo result = (ConstInfo) mapper.queryForObject(stmtId, coiId);
 		return result;
@@ -98,7 +98,7 @@ public class ConstInfoDao implements IConstInfoDao {
 	 *Implements IConstInfoDao.FindByCoiCreatetime
 	 */
 	@SuppressWarnings("unchecked")
-	public List<ConstInfo> FindByCoiCreatetime(Date coiCreatetime) throws SQLException {
+	public List<ConstInfo> FindByCoiCreatetime(Long coiCreatetime) throws SQLException {
 		String stmtId = "ConstInfo-FindByCoiCreatetime";
 		List<ConstInfo> result = mapper.queryForList(stmtId, coiCreatetime);
 		return result;
@@ -107,10 +107,10 @@ public class ConstInfoDao implements IConstInfoDao {
 	/**
 	 *Implements IConstInfoDao.Insert
 	 */
-	public Integer Insert(ConstInfo obj) throws SQLException {
+	public Long Insert(ConstInfo obj) throws SQLException {
 		if (obj == null) throw new NullPointerException("obj");
 		String stmtId = "ConstInfo-Insert";
-		return (Integer) mapper.insert(stmtId, obj);
+		return (Long) mapper.insert(stmtId, obj);
 	}
 	
 	/**
@@ -161,7 +161,7 @@ public class ConstInfoDao implements IConstInfoDao {
 	/**
 	 *Implements IConstInfoDao.DeleteByCoiCreatetime
 	 */
-	public int DeleteByCoiCreatetime(Date coiCreatetime) throws SQLException {
+	public int DeleteByCoiCreatetime(Long coiCreatetime) throws SQLException {
 		String stmtId = "ConstInfo-DeleteByCoiCreatetime";
 		int result = mapper.delete(stmtId, coiCreatetime);
 		return result;

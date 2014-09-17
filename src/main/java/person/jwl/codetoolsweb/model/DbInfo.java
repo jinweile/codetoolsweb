@@ -11,19 +11,19 @@ import java.math.BigDecimal;
 public class DbInfo implements Serializable {
     
 
-    private Integer diId;
+    private Long diId;
 	
 	/**
 	 *getter diId
 	 */
-	public Integer getDiId() {
+	public Long getDiId() {
     	return diId;
     }
 	
 	/**
 	 *setter diId
 	 */
-	public void setDiId(Integer diId) {
+	public void setDiId(Long diId) {
     	this.diId = diId;
     }
 	
@@ -113,19 +113,19 @@ public class DbInfo implements Serializable {
     }
 	
 
-    private Date diCreatetime;
+    private Long diCreatetime;
 	
 	/**
 	 *getter diCreatetime
 	 */
-	public Date getDiCreatetime() {
+	public Long getDiCreatetime() {
     	return diCreatetime;
     }
 	
 	/**
 	 *setter diCreatetime
 	 */
-	public void setDiCreatetime(Date diCreatetime) {
+	public void setDiCreatetime(Long diCreatetime) {
     	this.diCreatetime = diCreatetime;
     }
 	

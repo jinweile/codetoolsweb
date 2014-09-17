@@ -21,7 +21,7 @@ public interface ITemplateConstService {
 	/**
 	 *Finds a TemplateConst instance by the primary key value
 	 */
-	TemplateConst Find(Integer tcId) throws SQLException;
+	TemplateConst Find(Long tcId) throws SQLException;
 
 	/**
 	 *Finds all TemplateConst instances.
@@ -36,17 +36,17 @@ public interface ITemplateConstService {
 	/**
 	 *Finds TemplateConst instances by TiId value.
 	 */
-	List<TemplateConst> FindByTiId(Integer tiId) throws SQLException;
+	List<TemplateConst> FindByTiId(Long tiId) throws SQLException;
 	
 	/**
 	 *Finds TemplateConst instances by CoiId value.
 	 */
-	List<TemplateConst> FindByCoiId(Integer coiId) throws SQLException;
+	List<TemplateConst> FindByCoiId(Long coiId) throws SQLException;
 	
 	/**
 	 *Inserts a new TemplateConst instance into underlying database table.
 	 */
-	Integer Insert(TemplateConst obj) throws SQLException;
+	Long Insert(TemplateConst obj) throws SQLException;
 	
 	/**
 	 *Update the underlying database record of a TemplateConst instance.
@@ -61,12 +61,12 @@ public interface ITemplateConstService {
     /**
 	 *Deletes TemplateConst instances by TemplateConst.TiId.
 	 */
-	int DeleteByTiId(Integer tiId) throws SQLException;
+	int DeleteByTiId(Long tiId) throws SQLException;
 	
     /**
 	 *Deletes TemplateConst instances by TemplateConst.CoiId.
 	 */
-	int DeleteByCoiId(Integer coiId) throws SQLException;
+	int DeleteByCoiId(Long coiId) throws SQLException;
 	
 	/**
 	 *Reload the underlying database record of a TemplateConst instance.

@@ -101,7 +101,7 @@
 		FROM template_info
 		WHERE (ti_name = #value#)
 	</select>
-	<select id="TemplateInfo-FindByTiCreatetime" parameterClass="java.util.Date" resultMap="TemplateInfo-FullResultMap">
+	<select id="TemplateInfo-FindByTiCreatetime" parameterClass="Long" resultMap="TemplateInfo-FullResultMap">
 		SELECT
 			ti_id
 			, tp_id
@@ -110,7 +110,7 @@
 		FROM template_info
 		WHERE (ti_createtime = #value#)
 	</select>
-	<select id="TemplateInfo-QuickFindByTiCreatetime" parameterClass="java.util.Date" resultMap="TemplateInfo-NonLobResultMap">
+	<select id="TemplateInfo-QuickFindByTiCreatetime" parameterClass="Long" resultMap="TemplateInfo-NonLobResultMap">
 		SELECT
 			ti_id
 			, tp_id
@@ -121,22 +121,28 @@
 	</select>
 	
 	<insert id="TemplateInfo-Insert" parameterClass="TemplateInfo">
+        <!--oracle-->
+        <!--<selectKey keyProperty="innerUserID" resultType="Long" order="BEFORE">
+          select SQ_ADMIN_SEQ.nextval from dual
+        </selectKey>-->
 		INSERT INTO template_info (
-			 ti_id
-			, tp_id
+			 tp_id
 			, ti_name
 			, ti_content
 			, ti_createtime
 		) VALUES (
-			 #tiId#
-			, #tpId#
+			 #tpId#
 			, #tiName#
 			, #tiContent#
 			, #tiCreatetime#
 		)
 		<selectKey resultClass="Long" keyProperty="tiId" >
+            <!--sqlite-->
+            select last_insert_rowid() as value
+            <!--mysql-->
 			<!--select LAST_INSERT_ID() as value-->
-			select @@identity as value
+            <!--sqlserver-->
+			<!--select @@identity as value-->
 		</selectKey>
 	</insert>
 
@@ -162,7 +168,7 @@
 	<delete id="TemplateInfo-DeleteByTiName" parameterClass="String">
 		DELETE FROM template_info WHERE (ti_name = #value#)
 	</delete>
-	<delete id="TemplateInfo-DeleteByTiCreatetime" parameterClass="java.util.Date">
+	<delete id="TemplateInfo-DeleteByTiCreatetime" parameterClass="Long">
 		DELETE FROM template_info WHERE (ti_createtime = #value#)
 	</delete>
 	

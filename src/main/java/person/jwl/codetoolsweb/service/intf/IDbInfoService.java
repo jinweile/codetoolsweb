@@ -21,12 +21,12 @@ public interface IDbInfoService {
 	/**
 	 *Finds a DbInfo instance by the primary key value
 	 */
-	DbInfo Find(Integer diId) throws SQLException;
+	DbInfo Find(Long diId) throws SQLException;
 
 	/**
 	 *Finds a DbInfo instance by the primary key value without Lob columns loaded
 	 */
-	DbInfo QuickFind(Integer diId) throws SQLException;
+	DbInfo QuickFind(Long diId) throws SQLException;
 	
 	/**
 	 *Finds all DbInfo instances.
@@ -71,17 +71,17 @@ public interface IDbInfoService {
 	/**
 	 *Finds DbInfo instances by DiCreatetime value.
 	 */
-	List<DbInfo> FindByDiCreatetime(Date diCreatetime) throws SQLException;
+	List<DbInfo> FindByDiCreatetime(Long diCreatetime) throws SQLException;
 	
 	/**
 	 *Finds DbInfo instances by DiCreatetime value without Lob columns loaded.
 	 */
-	List<DbInfo> QuickFindByDiCreatetime(Date diCreatetime) throws SQLException;
+	List<DbInfo> QuickFindByDiCreatetime(Long diCreatetime) throws SQLException;
 	
 	/**
 	 *Inserts a new DbInfo instance into underlying database table.
 	 */
-	Integer Insert(DbInfo obj) throws SQLException;
+	Long Insert(DbInfo obj) throws SQLException;
 	
 	/**
 	 *Update the underlying database record of a DbInfo instance.
@@ -111,7 +111,7 @@ public interface IDbInfoService {
     /**
 	 *Deletes DbInfo instances by DbInfo.DiCreatetime.
 	 */
-	int DeleteByDiCreatetime(Date diCreatetime) throws SQLException;
+	int DeleteByDiCreatetime(Long diCreatetime) throws SQLException;
 	
 	/**
 	 *Reload the underlying database record of a DbInfo instance.
