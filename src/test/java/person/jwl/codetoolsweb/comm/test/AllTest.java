@@ -39,7 +39,7 @@ public class AllTest {
 	@Test
 	public void test() throws SQLException {
 		//fail("Not yet implemented");
-		IDbInfoService service = SpringContext.getInstance().getBean("IDbInfoService", IDbInfoService.class);
+		/*IDbInfoService service = SpringContext.getInstance().getBean("IDbInfoService", IDbInfoService.class);
 		List<DbInfo> list = service.FindAll();
 		System.out.println(list.size());
 		
@@ -51,7 +51,7 @@ public class AllTest {
 			obj.setTpOutinfo("out" + i);
 			obj.setTpRemark("remark" + i);
 			tservice.Insert(obj);
-		}
+		}*/
 	}
 
 }
