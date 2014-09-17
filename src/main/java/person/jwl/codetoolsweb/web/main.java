@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import person.jwl.codetoolsweb.comm.JSONHelper;
 import person.jwl.codetoolsweb.model.TemplateProject;
@@ -49,6 +50,16 @@ public class main {
 		List<TemplateProject> list = tpservice.FindAll();
 		String json = JSONHelper.serialize(list);
 		response.getWriter().write(json);
+	}
+	
+	@RequestMapping(value = "/index", method=RequestMethod.GET)
+	public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+
+		ModelAndView model = new ModelAndView();
+		model.setViewName("index");
+		//model.addAllObjects(map);
+		return model;
 	}
 	
 }
