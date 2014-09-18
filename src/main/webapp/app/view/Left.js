@@ -23,20 +23,64 @@ Ext.define('CT.view.Left', {
         	//右键菜单
         	'itemcontextmenu': function(menutree, record, items, index, e){
         		e.stopEvent();
-                var menu1 = Ext.create('Ext.menu.Menu', {
-                	items: [{
-                		text: '编辑项目',
-                		handler: function(widget, event) {
-                            alert(1);
-                        }
-                	}, {
-                		text: '删除项目',
-                		handler: function(widget, event) {
-                            alert(2);
-                        }
-                	}]
-                });
-                menu1.showAt(e.getXY());
+        		var menu1 = Ext.create('Ext.menu.Menu', {
+        			items: [{
+        				text: '新增项目',
+        				iconCls: 'settings',
+        				handler: function(widget, event) {
+        					alert(record.getId());
+        		        }
+        			}]
+        		});
+        		var menu2 = Ext.create('Ext.menu.Menu', {
+        			items: [{
+        				text: '编辑项目',
+        				iconCls: 'settings',
+        				handler: function(widget, event) {
+        		            alert(record.getId());
+        		        }
+        			}, {
+        				text: '删除项目',
+        				iconCls: 'info',
+        				handler: function(widget, event) {
+        		            alert(record.getId());
+        		        }
+        			}, {
+        				text: '新增模板',
+        				iconCls: 'info',
+        				handler: function(widget, event) {
+        		            alert(record.getId());
+        		        }
+        			}]
+        		});
+        		var menu3 = Ext.create('Ext.menu.Menu', {
+        			items: [{
+        				text: '编辑模板',
+        				iconCls: 'settings',
+        				handler: function(widget, event) {
+        					alert(record.getId());
+        		        }
+        			}, {
+        				text: '删除模板',
+        				iconCls: 'info',
+        				handler: function(widget, event) {
+        					alert(record.getId());
+        		        }
+        			}]
+        		});
+        		var ids = record.getId().split('/');
+        		switch(ids.length){
+	        		case 1:
+	        			menu1.showAt(e.getXY());
+	        			break;
+	        		case 2:
+	        			menu2.showAt(e.getXY());
+	        			break;
+	        		case 3:
+	        			menu3.showAt(e.getXY());
+	        			break;
+        		}
+                
                 return false;
         	}
         },
