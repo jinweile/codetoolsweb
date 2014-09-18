@@ -1,8 +1,8 @@
 Ext.application({
-    name: 'FV',
+    name: 'CT',
     controllers: [
-        'Articles',
-        'Feeds'
+        //'Articles',
+        //'Feeds'
     ],
     autoCreateViewport: true
 });
