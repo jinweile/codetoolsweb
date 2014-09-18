@@ -50,6 +50,7 @@
 			, tp_id
 			, ti_name
 			, ti_content
+			, ti_createtime
 		FROM template_info
 		WHERE
 			(ti_id = #tiId#)
@@ -59,7 +60,7 @@
 			ti_id
 			, tp_id
 			, ti_name
-			, ti_content
+			, ti_createtime
 		FROM template_info
 		WHERE
 			(ti_id = #tiId#)
@@ -71,6 +72,7 @@
 			, tp_id
 			, ti_name
 			, ti_content
+			, ti_createtime
 		FROM template_info
 		WHERE (tp_id = #value#)
 	</select>
@@ -79,7 +81,7 @@
 			ti_id
 			, tp_id
 			, ti_name
-			, ti_content
+			, ti_createtime
 		FROM template_info
 		WHERE (tp_id = #value#)
 	</select>
@@ -89,6 +91,7 @@
 			, tp_id
 			, ti_name
 			, ti_content
+			, ti_createtime
 		FROM template_info
 		WHERE (ti_name = #value#)
 	</select>
@@ -97,7 +100,7 @@
 			ti_id
 			, tp_id
 			, ti_name
-			, ti_content
+			, ti_createtime
 		FROM template_info
 		WHERE (ti_name = #value#)
 	</select>
@@ -107,6 +110,7 @@
 			, tp_id
 			, ti_name
 			, ti_content
+			, ti_createtime
 		FROM template_info
 		WHERE (ti_createtime = #value#)
 	</select>
@@ -115,7 +119,7 @@
 			ti_id
 			, tp_id
 			, ti_name
-			, ti_content
+			, ti_createtime
 		FROM template_info
 		WHERE (ti_createtime = #value#)
 	</select>
@@ -178,6 +182,7 @@
 			, tp_id
 			, ti_name
 			, ti_content
+			, ti_createtime
 		FROM template_info
 		WHERE (ti_id = #tiId#)
 	</select>

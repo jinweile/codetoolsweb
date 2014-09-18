@@ -57,6 +57,8 @@
 			, di_classname
 			, di_links
 			, di_tablesql
+			, di_colsql
+			, di_createtime
 		FROM db_info
 		WHERE
 			(di_id = #diId#)
@@ -67,7 +69,7 @@
 			, di_name
 			, di_classname
 			, di_links
-			, di_tablesql
+			, di_createtime
 		FROM db_info
 		WHERE
 			(di_id = #diId#)
@@ -80,6 +82,8 @@
 			, di_classname
 			, di_links
 			, di_tablesql
+			, di_colsql
+			, di_createtime
 		FROM db_info
 		WHERE (di_name = #value#)
 	</select>
@@ -89,7 +93,7 @@
 			, di_name
 			, di_classname
 			, di_links
-			, di_tablesql
+			, di_createtime
 		FROM db_info
 		WHERE (di_name = #value#)
 	</select>
@@ -100,6 +104,8 @@
 			, di_classname
 			, di_links
 			, di_tablesql
+			, di_colsql
+			, di_createtime
 		FROM db_info
 		WHERE (di_classname = #value#)
 	</select>
@@ -109,7 +115,7 @@
 			, di_name
 			, di_classname
 			, di_links
-			, di_tablesql
+			, di_createtime
 		FROM db_info
 		WHERE (di_classname = #value#)
 	</select>
@@ -120,6 +126,8 @@
 			, di_classname
 			, di_links
 			, di_tablesql
+			, di_colsql
+			, di_createtime
 		FROM db_info
 		WHERE (di_links = #value#)
 	</select>
@@ -129,7 +137,7 @@
 			, di_name
 			, di_classname
 			, di_links
-			, di_tablesql
+			, di_createtime
 		FROM db_info
 		WHERE (di_links = #value#)
 	</select>
@@ -140,6 +148,8 @@
 			, di_classname
 			, di_links
 			, di_tablesql
+			, di_colsql
+			, di_createtime
 		FROM db_info
 		WHERE (di_createtime = #value#)
 	</select>
@@ -149,7 +159,7 @@
 			, di_name
 			, di_classname
 			, di_links
-			, di_tablesql
+			, di_createtime
 		FROM db_info
 		WHERE (di_createtime = #value#)
 	</select>
@@ -222,6 +232,8 @@
 			, di_classname
 			, di_links
 			, di_tablesql
+			, di_colsql
+			, di_createtime
 		FROM db_info
 		WHERE (di_id = #diId#)
 	</select>

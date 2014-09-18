@@ -1,5 +1,6 @@
 package person.jwl.codetoolsweb.web;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,11 +13,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import person.jwl.codetoolsweb.comm.JSONHelper;
-import person.jwl.codetoolsweb.model.TemplateProject;
-import person.jwl.codetoolsweb.service.intf.ITemplateProjectService;
+import person.jwl.codetoolsweb.extjs.model.*;
+import person.jwl.codetoolsweb.model.*;
+import person.jwl.codetoolsweb.service.intf.*;
 
 
 @Controller
@@ -28,38 +31,71 @@ public class main {
 	static Logger logger = Logger.getLogger("mylog");
 	
 	/**
-	 * 自动装配
+	 * 项目
 	 */
 	@Autowired
 	@Qualifier("ITemplateProjectService")
 	private ITemplateProjectService tpservice;
 	
-	@RequestMapping(value = "/test.json", method=RequestMethod.GET)
-	public void test(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		response.setContentType("application/json;charset=UTF-8");
-		
-		for(int i = 0; i < 1; i++){
-			TemplateProject obj = new TemplateProject();
-			obj.setTpCreatetime(new Date().getTime());
-			obj.setTpName("中文测试" + i);
-			obj.setTpOutinfo("士大夫敢死队" + i);
-			obj.setTpRemark("广泛士大夫" + i);
-			//tpservice.Insert(obj);
-		}
-		
-		List<TemplateProject> list = tpservice.FindAll();
-		String json = JSONHelper.serialize(list);
-		response.getWriter().write(json);
-	}
+	/**
+	 * 模板
+	 */
+	@Autowired
+	@Qualifier("ITemplateInfoService")
+	private ITemplateInfoService tiservice;
 	
+	/**
+	 * 加载首页
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/index", method=RequestMethod.GET)
 	public ModelAndView index(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
-
 		ModelAndView model = new ModelAndView();
 		model.setViewName("index");
 		//model.addAllObjects(map);
 		return model;
+	}
+	
+	/**
+	 * 获取项目目录树
+	 * @param request
+	 * @param response
+	 * @param id
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/projecttree.json", method=RequestMethod.GET)
+	public void test(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam(required = false) String id) throws Exception{
+		response.setContentType("application/json;charset=UTF-8");
+		List<Tree> treelist = new ArrayList<Tree>();
+		if(id == null || id.equals("src")){
+			List<TemplateProject> tplist = tpservice.FindAll();
+			for(TemplateProject tp : tplist){
+				Tree tree = new Tree();
+				tree.setCls("folder");
+				tree.setId("src/" + tp.getTpId());
+				//tree.setLeaf(true);
+				tree.setText(tp.getTpName());
+				treelist.add(tree);
+			}
+		}else{
+			//获取项目下的模板信息
+			Long TpId = Long.valueOf(id.split("/")[1]);
+			List<TemplateInfo> tilist = tiservice.QuickFindByTpId(TpId);
+			for(TemplateInfo ti : tilist){
+				Tree titree = new Tree();
+				titree.setCls("file");
+				titree.setId("src/" + TpId + "/" + ti.getTiId());
+				titree.setLeaf(true);
+				titree.setText(ti.getTiName());
+				treelist.add(titree);
+			}
+		}
+		String json = JSONHelper.serialize(treelist);
+		response.getWriter().write(json);
 	}
 	
 }
