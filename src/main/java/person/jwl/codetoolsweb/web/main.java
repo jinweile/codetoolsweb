@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -106,7 +107,7 @@ public class main {
 	 * @param id
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/projectshow.json/{pid}", method=RequestMethod.GET)
+	@RequestMapping(value = "/project.json/{pid}", method=RequestMethod.GET)
 	public void projectshow(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("pid") String pid) throws Exception{
 		response.setContentType("application/json;charset=UTF-8");
@@ -114,6 +115,34 @@ public class main {
 		tp.setTpCreatetime(null);
 		String json = JSONHelper.serialize(tp);
 		response.getWriter().write(json);
+	}
+	
+	/**
+	 * 编辑项目
+	 * @param request
+	 * @param response
+	 * @param id
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/project.json", method=RequestMethod.POST)
+	public void projectedit(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(required = true) Long tpId,
+			@RequestParam(required = true) String tpName,
+			@RequestParam(required = true) String tpRemark,
+			@RequestParam(required = true) String tpOutinfo) throws Exception{
+		response.setContentType("application/json;charset=UTF-8");
+		TemplateProject tp = new TemplateProject();
+		tp.setTpCreatetime(new Date().getTime());
+		tp.setTpId(tpId);
+		tp.setTpName(tpName);
+		tp.setTpRemark(tpRemark);
+		tp.setTpOutinfo(tpOutinfo);
+		if(tp.getTpId().equals(0)){
+			tpservice.Insert(tp);
+		}else{
+			tpservice.Update(tp);
+		}
+		response.getWriter().write("{\"success\":true}");
 	}
 	
 }

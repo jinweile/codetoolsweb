@@ -36,7 +36,11 @@ Ext.define('CT.view.Left', {
         				text: '新增项目',
         				iconCls: 'add',
         				handler: function(widget, event) {
-        					alert(record.getId());
+        					var project = Ext.create('CT.model.Project', {
+        						tpId: 0
+        					});
+        					var view = Ext.widget('projectedit');
+        			        view.down('form').loadRecord(project);
         		        }
         			}]
         		});

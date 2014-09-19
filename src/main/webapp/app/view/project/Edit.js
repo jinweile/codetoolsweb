@@ -39,7 +39,8 @@ Ext.define('CT.view.project.Edit', {
 
         this.buttons = [{
                 text: '保存',
-                action: 'save'
+                action: 'save',
+                handler: this.edit
             }, {
                 text: '取消',
                 scope: this,
@@ -50,5 +51,30 @@ Ext.define('CT.view.project.Edit', {
         }];
 
         this.callParent(arguments);
-    }
+    },
+	edit: function(button){
+		var win = button.up('window'),
+        form = win.down('form'),
+        record = form.getRecord(),
+        values = form.getValues();
+		record.set(values);
+		Ext.Ajax.request({
+		    url: 'project.json',
+		    method: 'POST',
+		    params: values,
+		    success: function(response){
+		    	win.close();
+		    	var tree = Ext.ComponentQuery.query('viewport left treepanel');
+		    	tree[0].store.reload();
+		    }
+		});
+		/*record.save({
+		    success: function() {
+		    	win.close();
+		    	var tree = Ext.ComponentQuery.query('viewport left treepanel');
+		    	tree.reload();
+		    }
+		});*/
+	}
+
 });

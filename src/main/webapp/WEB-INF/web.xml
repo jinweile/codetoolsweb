@@ -35,8 +35,10 @@
         <url-pattern>*</url-pattern>
     </filter-mapping>
 
+	<!-- 增加spring mvc 对put和delete等rest形式的支持 -->
     <filter>
         <filter-name>HiddenHttpMethodFilter</filter-name>
+        <!-- org.springframework.web.filter.HiddenHttpMethodFilter(HttpPutFormContentFilter) 这两个过滤器获取不到put的参数 -->
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
     </filter>
     <filter-mapping>

@@ -11,6 +11,6 @@ Ext.define('CT.model.Project', {
     ],
     proxy: {
         type: 'rest',
-        url : 'projectshow.json'
+        url : 'project.json'
     }
 });
