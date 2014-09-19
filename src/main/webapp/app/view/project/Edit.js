@@ -12,21 +12,24 @@ Ext.define('CT.view.project.Edit', {
         this.items = [{
                 xtype: 'form',
                 items: [{
+	                    xtype: 'hidden',
+	                    name : 'tpId'
+	                },{
 	                    xtype: 'textfield',
-	                    name : 'tp_name',
+	                    name : 'tpName',
 	                    padding: '5 5 5 5',
 	                    width: 600,
 	                    fieldLabel: '项目名称'
 	                }, {
 	                    xtype: 'textarea',
-	                    name : 'tp_remark',
+	                    name : 'tpRemark',
 	                    padding: '5 5 5 5',
 	                    width: 600,
 	                    height: 120,
 	                    fieldLabel: '项目说明'
 	                }, {
 	                    xtype: 'textarea',
-	                    name : 'tp_outinfo',
+	                    name : 'tpOutinfo',
 	                    padding: '5 5 5 5',
 	                    width: 600,
 	                    height: 300,
@@ -42,7 +45,7 @@ Ext.define('CT.view.project.Edit', {
                 scope: this,
                 handler: function(){
                 	this.close();
-                	Ext.getBody().unmask();
+                	//Ext.getBody().unmask();
                 }
         }];
 

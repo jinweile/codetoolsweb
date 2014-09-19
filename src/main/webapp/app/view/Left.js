@@ -1,7 +1,14 @@
 Ext.define('CT.view.Left', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.left',
-    requires: ['Ext.toolbar.*', 'Ext.tree.*', 'Ext.data.*', 'Ext.tip.*', 'Ext.Action', 'Ext.menu.*', 'CT.view.project.Edit'],
+    requires: ['Ext.toolbar.*', 
+		       'Ext.tree.*', 
+		       'Ext.data.*', 
+		       'Ext.tip.*', 
+		       'Ext.Action', 
+		       'Ext.menu.*', 
+		       'CT.view.project.Edit',
+		       'CT.model.Project'],
     //views: ['project.Edit'],
     title: '主菜单',
     collapsible: true,
@@ -38,9 +45,15 @@ Ext.define('CT.view.Left', {
         				text: '编辑项目',
         				iconCls: 'settings',
         				handler: function(widget, event) {
-        					var view = Ext.widget('projectedit');
-        			        view.down('form').loadRecord(record);
-        			        Ext.getBody().mask();
+        					var Project = Ext.ModelManager.getModel('CT.model.Project');
+        					var pid = record.getId().split("/")[1];
+        					Project.load(pid, {
+        					    success: function(project) {
+                					var view = Ext.widget('projectedit');
+                			        view.down('form').loadRecord(project);
+                			        //Ext.getBody().mask();
+        					    }
+        					});
         		        }
         			}, {
         				text: '删除项目',

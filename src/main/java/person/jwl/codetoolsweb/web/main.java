@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,7 +68,7 @@ public class main {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/projecttree.json", method=RequestMethod.GET)
-	public void test(HttpServletRequest request, HttpServletResponse response, 
+	public void tree(HttpServletRequest request, HttpServletResponse response, 
 			@RequestParam(required = false) String id) throws Exception{
 		response.setContentType("application/json;charset=UTF-8");
 		List<Tree> treelist = new ArrayList<Tree>();
@@ -95,6 +96,23 @@ public class main {
 			}
 		}
 		String json = JSONHelper.serialize(treelist);
+		response.getWriter().write(json);
+	}
+	
+	/**
+	 * 获取项目目录树
+	 * @param request
+	 * @param response
+	 * @param id
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/projectshow.json/{pid}", method=RequestMethod.GET)
+	public void projectshow(HttpServletRequest request, HttpServletResponse response,
+			@PathVariable("pid") String pid) throws Exception{
+		response.setContentType("application/json;charset=UTF-8");
+		TemplateProject tp = tpservice.Find(Long.valueOf(pid == null ? "1" : pid));
+		tp.setTpCreatetime(null);
+		String json = JSONHelper.serialize(tp);
 		response.getWriter().write(json);
 	}
 	
