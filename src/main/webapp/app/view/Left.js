@@ -1,7 +1,8 @@
 Ext.define('CT.view.Left', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.left',
-    requires: ['Ext.toolbar.*', 'Ext.tree.*', 'Ext.data.*', 'Ext.tip.*', 'Ext.Action', 'Ext.menu.*'],
+    requires: ['Ext.toolbar.*', 'Ext.tree.*', 'Ext.data.*', 'Ext.tip.*', 'Ext.Action', 'Ext.menu.*', 'CT.view.project.Edit'],
+    //views: ['project.Edit'],
     title: '主菜单',
     collapsible: true,
     animCollapse: true,
@@ -12,7 +13,7 @@ Ext.define('CT.view.Left', {
         iconCls: 'settings',
         xtype: 'treepanel',
         listeners: {
-        	//左键点击
+        	//左键点击,双击:itemdblclick
         	'itemclick': function(view, record, items, index, e){
         		//alert(record.getId());
                 var leaf = record.get('leaf');
@@ -26,7 +27,7 @@ Ext.define('CT.view.Left', {
         		var menu1 = Ext.create('Ext.menu.Menu', {
         			items: [{
         				text: '新增项目',
-        				iconCls: 'settings',
+        				iconCls: 'add',
         				handler: function(widget, event) {
         					alert(record.getId());
         		        }
@@ -37,19 +38,23 @@ Ext.define('CT.view.Left', {
         				text: '编辑项目',
         				iconCls: 'settings',
         				handler: function(widget, event) {
-        		            alert(record.getId());
+        					var view = Ext.widget('projectedit');
+        			        view.down('form').loadRecord(record);
+        			        Ext.getBody().mask();
         		        }
         			}, {
         				text: '删除项目',
-        				iconCls: 'info',
+        				iconCls: 'del',
         				handler: function(widget, event) {
-        		            alert(record.getId());
+        					var view = Ext.widget('projectedit');
+        			        view.down('form').loadRecord(record);
         		        }
         			}, {
         				text: '新增模板',
-        				iconCls: 'info',
+        				iconCls: 'add',
         				handler: function(widget, event) {
-        		            alert(record.getId());
+        					var view = Ext.widget('projectedit');
+        			        view.down('form').loadRecord(record);
         		        }
         			}]
         		});
@@ -62,7 +67,7 @@ Ext.define('CT.view.Left', {
         		        }
         			}, {
         				text: '删除模板',
-        				iconCls: 'info',
+        				iconCls: 'del',
         				handler: function(widget, event) {
         					alert(record.getId());
         		        }
@@ -95,12 +100,6 @@ Ext.define('CT.view.Left', {
 	            id: 'src',
 	            expanded: true
 	        },
-        },
-        rightmenu: function(){
-        	
-        },
-        leftmenu: function(){
-        	
         }
 	}, {
 		title: '数据库信息设置',
