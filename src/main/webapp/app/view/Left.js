@@ -34,6 +34,7 @@ Ext.define('CT.view.Left', {
         	//右键菜单
         	'itemcontextmenu': function(menutree, record, items, index, e){
         		e.stopEvent();
+        		var obj = this;
         		treearray = record.getId().split("/");
         		var pid = treearray.length > 1 ?  treearray[1] : 0;
         		var tid = treearray.length > 2 ?  treearray[2] : 0;
@@ -80,8 +81,9 @@ Ext.define('CT.view.Left', {
         						    method: 'POST',
         						    params: { tpId: pid },
         						    success: function(response){
-        						    	var tree = Ext.ComponentQuery.query('viewport left treepanel');
-        						    	tree[0].store.reload();
+        						    	//var tree = Ext.ComponentQuery.query('viewport left treepanel');
+        						    	//tree[0].store.reload();
+        						    	obj.store.load();
         						    }
         						});
         					});
@@ -106,7 +108,7 @@ Ext.define('CT.view.Left', {
         				iconCls: 'settings',
         				handler: function(widget, event) {
         					var Template = Ext.ModelManager.getModel('CT.model.Template');
-        					Template.load(pid,tid, {
+        					Template.load(tid, {
         					    success: function(template) {
                 					var view = Ext.widget('templateedit');
                 			        view.down('form').loadRecord(template);
@@ -127,8 +129,9 @@ Ext.define('CT.view.Left', {
         						    method: 'POST',
         						    params: { tiId: tid },
         						    success: function(response){
-        						    	var tree = Ext.ComponentQuery.query('viewport left treepanel');
-        						    	tree[0].store.reload();
+        						    	//var tree = Ext.ComponentQuery.query('viewport left treepanel');
+        						    	//tree[0].store.reload();
+        						    	obj.store.load();
         						    }
         						});
         					});

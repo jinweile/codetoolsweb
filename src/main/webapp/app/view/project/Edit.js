@@ -65,7 +65,7 @@ Ext.define('CT.view.project.Edit', {
 		    success: function(response){
 		    	win.close();
 		    	var tree = Ext.ComponentQuery.query('viewport left treepanel');
-		    	tree[0].store.reload();
+		    	tree[0].store.load();
 		    }
 		});
 		/*record.save({

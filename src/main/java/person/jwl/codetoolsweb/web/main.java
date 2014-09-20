@@ -146,7 +146,7 @@ public class main {
 	}
 	
 	/**
-	 * 编辑项目
+	 * 删除项目
 	 * @param request
 	 * @param response
 	 * @param id
@@ -159,6 +159,70 @@ public class main {
 		TemplateProject tp = new TemplateProject();
 		tp.setTpId(Long.valueOf(tpId));
 		tpservice.Delete(tp);
+		response.getWriter().write("{\"success\":true}");
+	}
+	
+	/**
+	 * 获取模版信息
+	 * @param request
+	 * @param response
+	 * @param id
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/template.json/{tid}", method=RequestMethod.GET)
+	public void templateshow(HttpServletRequest request, HttpServletResponse response,
+			@PathVariable("tid") String tid) throws Exception{
+		response.setContentType("application/json;charset=UTF-8");
+		TemplateInfo ti = tiservice.Find(Long.valueOf(tid == null ? "0" : tid));
+		ti.setTiCreatetime(null);
+		ti.setTiContent(null);
+		String json = JSONHelper.serialize(ti);
+		response.getWriter().write(json);
+	}
+	
+	/**
+	 * 编辑模版
+	 * @param request
+	 * @param response
+	 * @param id
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/template.json", method=RequestMethod.POST)
+	public void templateedit(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(required = true) Long tpId,
+			@RequestParam(required = true) Long tiId,
+			@RequestParam(required = true) String tiName) throws Exception{
+		response.setContentType("application/json;charset=UTF-8");
+		TemplateInfo ti = new TemplateInfo();
+		ti.setTiId(tiId);
+		ti.setTpId(tpId);
+		ti.setTiName(tiName);
+		if(ti.getTiId().equals(Long.valueOf(0))){
+			ti.setTiCreatetime(new Date().getTime());
+			tiservice.Insert(ti);
+		}else{
+			TemplateInfo oldti = tiservice.Find(ti.getTiId());
+			ti.setTiContent(oldti.getTiContent());
+			ti.setTiCreatetime(oldti.getTiCreatetime());
+			tiservice.Update(ti);
+		}
+		response.getWriter().write("{\"success\":true}");
+	}
+	
+	/**
+	 * 删除项目
+	 * @param request
+	 * @param response
+	 * @param id
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/templatedel.json", method=RequestMethod.POST)
+	public void templatedel(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(required = true) Long tiId) throws Exception{
+		response.setContentType("application/json;charset=UTF-8");
+		TemplateInfo ti = new TemplateInfo();
+		ti.setTiId(Long.valueOf(tiId));
+		tiservice.Delete(ti);
 		response.getWriter().write("{\"success\":true}");
 	}
 	
