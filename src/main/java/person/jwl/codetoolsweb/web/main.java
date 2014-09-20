@@ -101,7 +101,7 @@ public class main {
 	}
 	
 	/**
-	 * 获取项目目录树
+	 * 获取项目下模板树叶
 	 * @param request
 	 * @param response
 	 * @param id
@@ -111,7 +111,7 @@ public class main {
 	public void projectshow(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("pid") String pid) throws Exception{
 		response.setContentType("application/json;charset=UTF-8");
-		TemplateProject tp = tpservice.Find(Long.valueOf(pid == null ? "1" : pid));
+		TemplateProject tp = tpservice.Find(Long.valueOf(pid == null ? "0" : pid));
 		tp.setTpCreatetime(null);
 		String json = JSONHelper.serialize(tp);
 		response.getWriter().write(json);
@@ -137,11 +137,28 @@ public class main {
 		tp.setTpName(tpName);
 		tp.setTpRemark(tpRemark);
 		tp.setTpOutinfo(tpOutinfo);
-		if(tp.getTpId().equals(0)){
+		if(tp.getTpId().equals(Long.valueOf(0))){
 			tpservice.Insert(tp);
 		}else{
 			tpservice.Update(tp);
 		}
+		response.getWriter().write("{\"success\":true}");
+	}
+	
+	/**
+	 * 编辑项目
+	 * @param request
+	 * @param response
+	 * @param id
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/projectdel.json", method=RequestMethod.POST)
+	public void projectdel(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(required = true) Long tpId) throws Exception{
+		response.setContentType("application/json;charset=UTF-8");
+		TemplateProject tp = new TemplateProject();
+		tp.setTpId(Long.valueOf(tpId));
+		tpservice.Delete(tp);
 		response.getWriter().write("{\"success\":true}");
 	}
 	

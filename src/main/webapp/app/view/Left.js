@@ -7,8 +7,11 @@ Ext.define('CT.view.Left', {
 		       'Ext.tip.*', 
 		       'Ext.Action', 
 		       'Ext.menu.*', 
+		       'Ext.window.MessageBox',
 		       'CT.view.project.Edit',
-		       'CT.model.Project'],
+		       'CT.model.Project',
+		       'CT.view.template.Edit',
+		       'CT.model.Template'],
     //views: ['project.Edit'],
     title: '主菜单',
     collapsible: true,
@@ -31,6 +34,10 @@ Ext.define('CT.view.Left', {
         	//右键菜单
         	'itemcontextmenu': function(menutree, record, items, index, e){
         		e.stopEvent();
+        		treearray = record.getId().split("/");
+        		var pid = treearray.length > 1 ?  treearray[1] : 0;
+        		var tid = treearray.length > 2 ?  treearray[2] : 0;
+        		//root
         		var menu1 = Ext.create('Ext.menu.Menu', {
         			items: [{
         				text: '新增项目',
@@ -44,13 +51,13 @@ Ext.define('CT.view.Left', {
         		        }
         			}]
         		});
+        		//project
         		var menu2 = Ext.create('Ext.menu.Menu', {
         			items: [{
         				text: '编辑项目',
         				iconCls: 'settings',
         				handler: function(widget, event) {
         					var Project = Ext.ModelManager.getModel('CT.model.Project');
-        					var pid = record.getId().split("/")[1];
         					Project.load(pid, {
         					    success: function(project) {
                 					var view = Ext.widget('projectedit');
@@ -63,30 +70,68 @@ Ext.define('CT.view.Left', {
         				text: '删除项目',
         				iconCls: 'del',
         				handler: function(widget, event) {
-        					var view = Ext.widget('projectedit');
-        			        view.down('form').loadRecord(record);
+        					var txt = record.raw.text;
+        					Ext.MessageBox.confirm('Confirm', 
+        							'确定删除&nbsp;&nbsp;<font color="red">' + txt + '</font>&nbsp;&nbsp;?', 
+        							function(button){
+        						if(button != "yes") return;
+        						Ext.Ajax.request({
+        						    url: 'projectdel.json',
+        						    method: 'POST',
+        						    params: { tpId: pid },
+        						    success: function(response){
+        						    	var tree = Ext.ComponentQuery.query('viewport left treepanel');
+        						    	tree[0].store.reload();
+        						    }
+        						});
+        					});
         		        }
         			}, {
         				text: '新增模板',
         				iconCls: 'add',
         				handler: function(widget, event) {
-        					var view = Ext.widget('projectedit');
-        			        view.down('form').loadRecord(record);
+        					var template = Ext.create('CT.model.Template', {
+        						tiId: 0,
+        						tpId: parseInt(pid)
+        					});
+        					var view = Ext.widget('templateedit');
+        			        view.down('form').loadRecord(template);
         		        }
         			}]
         		});
+        		//template
         		var menu3 = Ext.create('Ext.menu.Menu', {
         			items: [{
         				text: '编辑模板',
         				iconCls: 'settings',
         				handler: function(widget, event) {
-        					alert(record.getId());
+        					var Template = Ext.ModelManager.getModel('CT.model.Template');
+        					Template.load(pid,tid, {
+        					    success: function(template) {
+                					var view = Ext.widget('templateedit');
+                			        view.down('form').loadRecord(template);
+        					    }
+        					});
         		        }
         			}, {
         				text: '删除模板',
         				iconCls: 'del',
         				handler: function(widget, event) {
-        					alert(record.getId());
+        					var txt = record.raw.text;
+        					Ext.MessageBox.confirm('Confirm', 
+        							'确定删除&nbsp;&nbsp;<font color="red">' + txt + '</font>&nbsp;&nbsp;?', 
+        							function(button){
+        						if(button != "yes") return;
+        						Ext.Ajax.request({
+        						    url: 'templatedel.json',
+        						    method: 'POST',
+        						    params: { tiId: tid },
+        						    success: function(response){
+        						    	var tree = Ext.ComponentQuery.query('viewport left treepanel');
+        						    	tree[0].store.reload();
+        						    }
+        						});
+        					});
         		        }
         			}]
         		});
