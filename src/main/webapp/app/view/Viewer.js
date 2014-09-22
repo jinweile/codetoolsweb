@@ -3,10 +3,10 @@ Ext.define('CT.view.Viewer', {
     alias: 'widget.viewer',
     requires: [],
     activeItem: 0,
-    margins: '5 5 5 5',
+    margins: '5 0 5 5',
     cls: 'preview',
-    //deferredRender: false,
-    //activeTab: 0,     // first tab initially active
+    deferredRender: false,
+    activeTab: 0,     // first tab initially active
     items: [{
         title: '使用说明',
         autoScroll: true,
