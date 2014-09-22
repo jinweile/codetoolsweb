@@ -5,11 +5,10 @@ Ext.define('CT.view.Viewer', {
     activeItem: 0,
     margins: '5 5 5 5',
     cls: 'preview',
-    deferredRender: false,
-    activeTab: 0,     // first tab initially active
+    //deferredRender: false,
+    //activeTab: 0,     // first tab initially active
     items: [{
         title: '使用说明',
-        //closable: true,
         autoScroll: true,
         html: '欢迎使用代码生成工具，本系统正在开发中！'
     }],

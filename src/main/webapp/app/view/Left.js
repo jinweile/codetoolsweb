@@ -11,7 +11,8 @@ Ext.define('CT.view.Left', {
 		       'CT.view.project.Edit',
 		       'CT.model.Project',
 		       'CT.view.template.Edit',
-		       'CT.model.Template'],
+		       'CT.model.Template',
+		       'CT.view.center.Edit'],
     //views: ['project.Edit'],
     title: '主菜单',
     collapsible: true,
@@ -26,9 +27,19 @@ Ext.define('CT.view.Left', {
         	//左键点击,双击:itemdblclick
         	'itemclick': function(view, record, items, index, e){
         		//alert(record.getId());
+        		var id = "center_edit_" + record.raw.id;
+        		var title = record.parentNode.raw.text;
+        		title += " : " + record.raw.text; 
                 var leaf = record.get('leaf');
                 if (leaf) {
-                    
+                	var tab = Ext.getCmp(id);
+                	if(tab){
+                		tab.show();
+                	} else {
+	                	var tabs = Ext.ComponentQuery.query('viewport viewer');
+	                	tab = Ext.widget('centeredit',{id: id,title: title});
+	                	tabs[0].add(tab).show();
+                	}
                 }
         	},
         	//右键菜单
