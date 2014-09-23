@@ -204,6 +204,8 @@ public class main {
 			tiservice.Insert(ti);
 		}else{
 			TemplateInfo oldti = tiservice.Find(ti.getTiId());
+			if(ti.getTiName() == null)
+				ti.setTiName(oldti.getTiName());
 			if(ti.getTiContent() == null)
 				ti.setTiContent(oldti.getTiContent());
 			ti.setTiCreatetime(oldti.getTiCreatetime());
