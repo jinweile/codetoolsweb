@@ -15,19 +15,33 @@ Ext.define('CT.view.center.Edit', {
 			xtype : 'hidden',
 			name : 'tiId'
 		}, {
+			xtype : 'hidden',
+			name : 'tpId'
+		}, {
 			xtype : 'textarea',
 			layout : 'fit',
 			name : 'tiContent',
 			padding : '5 5 5 5',
 			width : '98%',
-			height : 830, 
-			anchor : '100%' 
+			height : 830,
+			anchor : '100%'
 		} ]
 	} ],
 	buttons : [ {
 		text : '保存',
-		action : 'save',
-		handler : this.edit
+		action: 'save',
+		handler : function(button) {
+			var form = button.up('panel').down("form"), 
+			values = form.getValues();
+			Ext.Ajax.request({
+				url : 'template.json',
+				method : 'POST',
+				params : values,
+				success : function(response) {
+					Ext.Msg.alert("提示", "保存成功！");
+				}
+			});
+		}
 	}, {
 		text : '重设',
 		scope : this,
@@ -36,8 +50,5 @@ Ext.define('CT.view.center.Edit', {
 			var form = panel.down('form').getForm();
 			form.reset();
 		}
-	} ],
-	edit : function(button){
-		
-	}
+	} ]
 })

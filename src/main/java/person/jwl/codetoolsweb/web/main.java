@@ -175,7 +175,7 @@ public class main {
 		response.setContentType("application/json;charset=UTF-8");
 		TemplateInfo ti = tiservice.Find(Long.valueOf(tid == null ? "0" : tid));
 		ti.setTiCreatetime(null);
-		ti.setTiContent(null);
+		//ti.setTiContent(null);
 		String json = JSONHelper.serialize(ti);
 		response.getWriter().write(json);
 	}
@@ -191,18 +191,21 @@ public class main {
 	public void templateedit(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(required = true) Long tpId,
 			@RequestParam(required = true) Long tiId,
-			@RequestParam(required = true) String tiName) throws Exception{
+			@RequestParam(required = false) String tiName,
+			@RequestParam(required = false) String tiContent) throws Exception{
 		response.setContentType("application/json;charset=UTF-8");
 		TemplateInfo ti = new TemplateInfo();
 		ti.setTiId(tiId);
 		ti.setTpId(tpId);
 		ti.setTiName(tiName);
+		ti.setTiContent(tiContent);
 		if(ti.getTiId().equals(Long.valueOf(0))){
 			ti.setTiCreatetime(new Date().getTime());
 			tiservice.Insert(ti);
 		}else{
 			TemplateInfo oldti = tiservice.Find(ti.getTiId());
-			ti.setTiContent(oldti.getTiContent());
+			if(ti.getTiContent() == null)
+				ti.setTiContent(oldti.getTiContent());
 			ti.setTiCreatetime(oldti.getTiCreatetime());
 			tiservice.Update(ti);
 		}

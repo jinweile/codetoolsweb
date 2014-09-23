@@ -27,6 +27,8 @@ Ext.define('CT.view.Left', {
         	//左键点击,双击:itemdblclick
         	'itemclick': function(view, record, items, index, e){
         		//alert(record.getId());
+        		var treearray = record.getId().split("/");
+        		var tid = treearray.length > 2 ?  treearray[2] : 0;
         		var id = "center_edit_" + record.raw.id;
         		var title = record.parentNode.raw.text;
         		title += " : " + record.raw.text; 
@@ -36,9 +38,16 @@ Ext.define('CT.view.Left', {
                 	if(tab){
                 		tab.show();
                 	} else {
-	                	var tabs = Ext.ComponentQuery.query('viewport viewer');
-	                	tab = Ext.widget('centeredit',{id: id,title: title});
-	                	tabs[0].add(tab).show();
+                		//ajax加载模板内容
+                		var Template = Ext.ModelManager.getModel('CT.model.Template');
+    					Template.load(tid, {
+    					    success: function(template) {
+        	                	var tabs = Ext.ComponentQuery.query('viewport viewer');
+        	                	tab = Ext.widget('centeredit',{id: id,title: title});
+        	                	tab.down('form').loadRecord(template);
+        	                	tabs[0].add(tab).show();
+    					    }
+    					});
                 	}
                 }
         	},

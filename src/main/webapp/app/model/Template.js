@@ -6,7 +6,8 @@ Ext.define('CT.model.Template', {
     fields: [
         {name: 'tiId',  type: 'int', convert: null},
         {name: 'tpId',  type: 'int', convert: null},
-        {name: 'tiName',   type: 'string'}
+        {name: 'tiName',   type: 'string'},
+        {name: 'tiContent',   type: 'string'}
     ],
     proxy: {
         type: 'rest',
