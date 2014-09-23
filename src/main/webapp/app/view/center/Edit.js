@@ -24,7 +24,7 @@ Ext.define('CT.view.center.Edit', {
 			name : 'tiContent',
 			padding : '5 5 5 5',
 			width : '98%',
-			height : 830,
+			height : 820,
 			anchor : '100%'
 		} ]
 	} ],
