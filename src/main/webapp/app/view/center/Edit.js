@@ -11,6 +11,7 @@ Ext.define('CT.view.center.Edit', {
 	closable : true,
 	items : [ {
 		xtype : 'form',
+		autoScroll : true,
 		items : [ {
 			xtype : 'hidden',
 			name : 'tiId'
