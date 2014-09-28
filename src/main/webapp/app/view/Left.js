@@ -192,8 +192,27 @@ Ext.define('CT.view.Left', {
         iconCls: 'info'
 	}, {
 		title: '系统变量设置',
-        html: '<p>Some settings in here.</p>',
-        iconCls: 'nav'
+        iconCls: 'nav',
+        xtype: 'grid',
+        store:{
+        	fields:['name', 'code'],
+            data:{'items':[
+                           { 'name': 'daoimp包名',  "code":"$daoimppackage" },
+                           { 'name': 'serviceimp包名',  "code":"$serviceimppackage" },
+                           { 'name': 'daointf包名',  "code":"$daointfpackage" },
+                           { 'name': 'serviceintf包名',  "code":"$serviceintfpackage" },
+                           { 'name': 'model包名', "code":"$modelpackage" }
+                       ]},
+            proxy: { type: 'memory',
+                         reader: {
+	                         type: 'json',
+	                         root: 'items'}
+                       }
+        },
+        columns: [
+	          { header: '变量名',  dataIndex: 'name' },
+	          { header: '变量代码', dataIndex: 'code', flex: 1 }
+        ]
 	}],
     initComponent: function() {
         this.callParent(arguments);
