@@ -244,7 +244,7 @@ Ext.define('CT.view.Left', {
             }
         },
         columns: [
-                  { dataIndex: 'coiId', width: 18},
+                  { dataIndex: 'coiId', width: 18 },
                   { header: '变量名',  dataIndex: 'coiName', editor: {allowBlank: false} },
                   { header: '变量代码', dataIndex: 'coiCode', flex: 1, editor: {allowBlank: false} }
         ],
