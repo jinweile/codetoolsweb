@@ -12,7 +12,8 @@ Ext.define('CT.view.Left', {
 		       'CT.model.Project',
 		       'CT.view.template.Edit',
 		       'CT.model.Template',
-		       'CT.view.center.Edit'],
+		       'CT.view.center.Edit',
+		       'CT.model.ConstInfo'],
     //views: ['project.Edit'],
     title: '主菜单',
     collapsible: true,
@@ -191,27 +192,80 @@ Ext.define('CT.view.Left', {
         html: '<p>Some info in here.</p>',
         iconCls: 'info'
 	}, {
+		id: 'constgrid',
 		title: '系统变量设置',
         iconCls: 'nav',
         xtype: 'grid',
+        tbar: [{
+	        	text: '新增',
+	            iconCls: 'add',
+	            handler: function(widget, event){
+	            	var record = Ext.create('CT.model.ConstInfo', {
+						coiId: 0,
+						coiName: '',
+						coiCode: ''
+					});
+	            	var grid = Ext.ComponentQuery.query('viewport left #constgrid');
+	            	grid[0].store.add(record);
+	            }
+         	}, '-', {
+	        	text: '删除',
+	            iconCls: 'del',
+	            handler: function(widget, event){
+	            	var rows = Ext.ComponentQuery.query('viewport left #constgrid')[0].getSelectionModel().getSelection();
+	            	if(rows.length == 0) return;
+	            	var coiId = rows[0].get('coiId');
+					Ext.MessageBox.confirm('Confirm', 
+							'确定删除吗?', 
+							function(button){
+						if(button != "yes") return;
+						Ext.Ajax.request({
+						    url: 'constinfodel.json',
+						    method: 'POST',
+						    params: { coiId: coiId },
+						    success: function(response){
+						    	var grid = Ext.ComponentQuery.query('viewport left #constgrid');
+						    	grid[0].store.load();
+						    }
+						});
+					});
+	            }
+         }],
         store:{
-        	fields:['name', 'code'],
-            data:{'items':[
-                           { 'name': 'daoimp包名',  "code":"$daoimppackage" },
-                           { 'name': 'serviceimp包名',  "code":"$serviceimppackage" },
-                           { 'name': 'daointf包名',  "code":"$daointfpackage" },
-                           { 'name': 'serviceintf包名',  "code":"$serviceintfpackage" },
-                           { 'name': 'model包名', "code":"$modelpackage" }
-                       ]},
-            proxy: { type: 'memory',
-                         reader: {
-	                         type: 'json',
-	                         root: 'items'}
-                       }
+        	autoLoad: true,
+        	fields:['coiId', 'coiName', 'coiCode'],
+            proxy: { 
+            	type: 'ajax',
+            	url: 'constlist.json',
+                reader: {
+		            type: 'json',
+		            root: 'items'
+	            }
+            }
         },
         columns: [
-	          { header: '变量名',  dataIndex: 'name' },
-	          { header: '变量代码', dataIndex: 'code', flex: 1 }
+                  { dataIndex: 'coiId', width: 18},
+                  { header: '变量名',  dataIndex: 'coiName', editor: {allowBlank: false} },
+                  { header: '变量代码', dataIndex: 'coiCode', flex: 1, editor: {allowBlank: false} }
+        ],
+        plugins: [
+			Ext.create('Ext.grid.plugin.CellEditing', {
+			    clicksToEdit : 1,
+			    listeners : {
+                    'edit' : function(editor,ctx){
+                    	if(ctx.originalValue == ctx.value) return;
+                        Ext.Ajax.request({
+						    url: 'constinfoedit.json',
+						    method: 'POST',
+						    params: { coiId: ctx.record.data.coiId,coiName:ctx.record.data.coiName,coiCode:ctx.record.data.coiCode },
+						    success: function(response){
+						    	var grid = Ext.ComponentQuery.query('viewport left #constgrid');
+						    	grid[0].store.load();
+						    }
+						});
+                    }
+                }
+			})
         ]
 	}],
     initComponent: function() {
