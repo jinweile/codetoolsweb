@@ -13,7 +13,9 @@ Ext.define('CT.view.Left', {
 		       'CT.view.template.Edit',
 		       'CT.model.Template',
 		       'CT.view.center.Edit',
-		       'CT.model.ConstInfo'],
+		       'CT.model.ConstInfo',
+		       'CT.model.Db',
+		       'CT.view.db.Edit'],
     //views: ['project.Edit'],
     title: '主菜单',
     collapsible: true,
@@ -188,9 +190,77 @@ Ext.define('CT.view.Left', {
 	        },
         }
 	}, {
+		id: 'dbgrid',
 		title: '数据库信息设置',
-        html: '<p>Some info in here.</p>',
-        iconCls: 'info'
+        iconCls: 'info',
+        xtype: 'grid',
+        listeners: {
+        	'itemdblclick': function(view, record, items, index, e){
+        		var rows = Ext.ComponentQuery.query('viewport left #dbgrid')[0].getSelectionModel().getSelection();
+            	if(rows.length == 0) return;
+            	var diId = rows[0].get('diId');
+				var Db = Ext.ModelManager.getModel('CT.model.Db');
+				Db.load(diId, {
+				    success: function(db) {
+    					var view = Ext.widget('dbedit');
+    			        view.down('form').loadRecord(db);
+				    }
+				});
+        	}
+        },
+        tbar: [{
+        	text: '新增',
+            iconCls: 'add',
+            handler: function(widget, event){
+				var db = Ext.create('CT.model.Db', {
+					diId: 0
+				});
+				var view = Ext.widget('dbedit');
+		        view.down('form').loadRecord(db);
+            }
+     	}, '-', {
+        	text: '删除',
+            iconCls: 'del',
+            handler: function(widget, event){
+            	var rows = Ext.ComponentQuery.query('viewport left #dbgrid')[0].getSelectionModel().getSelection();
+            	if(rows.length == 0) return;
+            	var diId = rows[0].get('diId');
+				Ext.MessageBox.confirm('Confirm', 
+						'确定删除吗?', 
+						function(button){
+					if(button != "yes") return;
+					Ext.Ajax.request({
+					    url: 'dbdel.json',
+					    method: 'POST',
+					    params: { diId: diId },
+					    success: function(response){
+					    	var grid = Ext.ComponentQuery.query('viewport left #dbgrid');
+					    	grid[0].store.load();
+					    }
+					});
+				});
+            }
+	     }],
+	    store:{
+	    	autoLoad: true,
+	    	fields:['diId', 'diName', 'diClassname', 'diLinks', 'diTablesql', 'diColsql'],
+	        proxy: { 
+	        	type: 'ajax',
+	        	url: 'dblist.json',
+	            reader: {
+		            type: 'json',
+		            root: 'items'
+	            }
+	        }
+	    },
+	    columns: [
+	              { dataIndex: 'diId', width: 18 },
+	              { header: '数据库名',  dataIndex: 'diName', hidden: false },
+	              { header: '数据库类名', dataIndex: 'diClassname', hidden: false },
+	              { header: '连接字符串', dataIndex: 'diLinks', hidden: true },
+	              { header: '表sql', dataIndex: 'diTablesql', hidden: true },
+	              { header: '列sql', dataIndex: 'diColsql', hidden: true }
+	    ]
 	}, {
 		id: 'constgrid',
 		title: '系统变量设置',

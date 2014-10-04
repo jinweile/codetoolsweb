@@ -40,7 +40,7 @@ public class constinfo {
 	@RequestMapping(value = "/constlist.json", method=RequestMethod.GET)
 	public void constlist(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		List<ConstInfo> list = ciservice.FindAll();
-		ConstGrid grid = new ConstGrid();
+		Grid<ConstInfo> grid = new Grid<ConstInfo>();
 		grid.setItems(list);
 		response.setContentType("application/json;charset=UTF-8");
 		String json = JSONHelper.serialize(grid);

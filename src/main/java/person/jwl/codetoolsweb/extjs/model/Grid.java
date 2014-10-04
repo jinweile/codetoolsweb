@@ -4,15 +4,15 @@ import java.util.List;
 
 import person.jwl.codetoolsweb.model.ConstInfo;
 
-public class ConstGrid {
+public class Grid<T> {
 
-	private List<ConstInfo> items;
+	private List<T> items;
 
-	public List<ConstInfo> getItems() {
+	public List<T> getItems() {
 		return items;
 	}
 
-	public void setItems(List<ConstInfo> items) {
+	public void setItems(List<T> items) {
 		this.items = items;
 	}
 	
