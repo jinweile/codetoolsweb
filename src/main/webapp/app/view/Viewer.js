@@ -17,7 +17,7 @@ Ext.define('CT.view.Viewer', {
 	},
 	listeners : {
 		tabchange : function(tp, p) {
-			Ext.Msg.alert("提示", p.id);
+			//Ext.Msg.alert("提示", p.id);
 		}
 	}
 });
