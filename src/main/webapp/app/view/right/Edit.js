@@ -16,7 +16,7 @@ Ext.define('CT.view.right.Edit', {
             }
         }
     },
-    selModel: Ext.create('Ext.selection.CheckboxModel',{
+    /*selModel: Ext.create('Ext.selection.CheckboxModel',{
     	listeners:{
 	    	select: function(model, selected, index, eOpts){
 	    		if(index < 0) return;
@@ -32,7 +32,7 @@ Ext.define('CT.view.right.Edit', {
 	    		//alert(tc[0].templateid);
 	    	}
     	}
-    }),
+    }),*/
     columns: [
               { dataIndex: 'diId', width: 18 },
               { header: '数据库名',  dataIndex: 'diName', hidden: false },
