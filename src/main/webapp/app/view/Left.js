@@ -15,7 +15,8 @@ Ext.define('CT.view.Left', {
 		       'CT.view.center.Edit',
 		       'CT.model.ConstInfo',
 		       'CT.model.Db',
-		       'CT.view.db.Edit'],
+		       'CT.view.db.Edit',
+		       'CT.view.right.Edit'],
     //views: ['project.Edit'],
     title: '主菜单',
     collapsible: true,
@@ -29,6 +30,7 @@ Ext.define('CT.view.Left', {
         listeners: {
         	//左键点击,双击:itemdblclick
         	'itemclick': function(view, record, items, index, e){
+        		//加载模板内容
         		//alert(record.getId());
         		var treearray = record.getId().split("/");
         		var tid = treearray.length > 2 ?  treearray[2] : 0;
@@ -53,6 +55,16 @@ Ext.define('CT.view.Left', {
     					});
                 	}
                 }
+                
+                //加载模板使用的变量信息列表
+                var rightid = "right_id";
+                var right = Ext.ComponentQuery.query('viewport right')[0];
+                var tc = Ext.ComponentQuery.query('#right_id');
+                if(tc.length > 0) {
+                	right.remove(tc[0]);
+                }
+            	tc = Ext.widget('rightedit',{id: rightid,title: title});
+                right.add(tc).show();
         	},
         	//右键菜单
         	'itemcontextmenu': function(menutree, record, items, index, e){

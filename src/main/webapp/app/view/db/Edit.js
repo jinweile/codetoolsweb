@@ -38,14 +38,14 @@ Ext.define('CT.view.db.Edit', {
 	                    name : 'diTablesql',
 	                    padding: '5 5 5 5',
 	                    width: 600,
-	                    height: 120,
+	                    height: 180,
 	                    fieldLabel: '表sql'
 	                }, {
 	                    xtype: 'textarea',
 	                    name : 'diColsql',
 	                    padding: '5 5 5 5',
 	                    width: 600,
-	                    height: 120,
+	                    height: 180,
 	                    fieldLabel: '列sql'
                 }]
         }];
