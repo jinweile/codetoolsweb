@@ -16,6 +16,23 @@ Ext.define('CT.view.right.Edit', {
             }
         }
     },
+    selModel: Ext.create('Ext.selection.CheckboxModel',{
+    	listeners:{
+	    	select: function(model, selected, index, eOpts){
+	    		if(index < 0) return;
+	    		//ajax提交数据
+	    		var tc = Ext.ComponentQuery.query('#right_id');
+	    		//alert(tc[0].templateid);
+	    	},
+	    	deselect: function(model, selected, index, eOpts){
+	    		if(index < 0) return;
+	    		alert(2);
+	    		//ajax提交数据
+	    		var tc = Ext.ComponentQuery.query('#right_id');
+	    		//alert(tc[0].templateid);
+	    	}
+    	}
+    }),
     columns: [
               { dataIndex: 'diId', width: 18 },
               { header: '数据库名',  dataIndex: 'diName', hidden: false },

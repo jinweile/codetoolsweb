@@ -63,7 +63,7 @@ Ext.define('CT.view.Left', {
                 if(tc.length > 0) {
                 	right.remove(tc[0]);
                 }
-            	tc = Ext.widget('rightedit',{id: rightid,title: title});
+            	tc = Ext.widget('rightedit',{id: rightid,title: title,templateid: tid});
                 right.add(tc).show();
         	},
         	//右键菜单
