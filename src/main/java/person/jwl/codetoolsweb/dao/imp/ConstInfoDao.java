@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 import person.jwl.codetoolsweb.model.ConstInfo;
+import person.jwl.codetoolsweb.model.ConstInforight;
 import person.jwl.codetoolsweb.dao.intf.IConstInfoDao;
 	
 /**
@@ -174,6 +175,16 @@ public class ConstInfoDao implements IConstInfoDao {
 		if (obj == null) throw new NullPointerException("obj");
 		String stmtId = "ConstInfo-Find";
 		mapper.queryForObject(stmtId, obj, obj);
+	}
+	
+	/**
+	 *Implements IConstInfoDao.FindAllBytiId
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ConstInforight> FindAllBytiId(Long tiId) throws SQLException {
+		String stmtId = "ConstInfo_right-FindAllBytiId";
+		List<ConstInforight> result = mapper.queryForList(stmtId, tiId);
+		return result;
 	}
 	
 }

@@ -7,8 +7,8 @@ import java.util.Date;
 import java.math.BigDecimal;
 
 import person.jwl.codetoolsweb.dao.intf.IConstInfoDao;
-
 import person.jwl.codetoolsweb.model.ConstInfo;
+import person.jwl.codetoolsweb.model.ConstInforight;
 import person.jwl.codetoolsweb.service.intf.IConstInfoService;
 	
 /**
@@ -152,6 +152,14 @@ public class ConstInfoService implements IConstInfoService {
 	public void Reload(ConstInfo obj) throws SQLException {
 		if (obj == null) throw new NullPointerException("obj");
 		dao.Reload(obj);
+	}
+	
+	/**
+	 *Implements IConstInfoService.FindAllBytiId
+	 */
+	public List<ConstInforight> FindAllBytiId(Long tiId) throws SQLException {
+		List<ConstInforight> result = dao.FindAllBytiId(tiId);
+		return result;
 	}
 	
 }

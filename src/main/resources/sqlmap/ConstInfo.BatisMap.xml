@@ -7,6 +7,7 @@
 <sqlMap namespace="ConstInfo">
 
 	<typeAlias alias="ConstInfo" type="person.jwl.codetoolsweb.model.ConstInfo" />
+	<typeAlias alias="ConstInforight" type="person.jwl.codetoolsweb.model.ConstInforight" />
 
 	<resultMap id="ConstInfo-FullResultMap" class="ConstInfo">
 		<result property="coiId" column="coi_id"/>
@@ -14,6 +15,14 @@
 		<result property="coiName" column="coi_name"/>
 		<result property="coiRemark" column="coi_remark"/>
 		<result property="coiCreatetime" column="coi_createtime"/>
+	</resultMap>
+	<resultMap id="ConstInforight-FullResultMap" class="ConstInforight">
+		<result property="coiId" column="coi_id"/>
+		<result property="coiCode" column="coi_code"/>
+		<result property="coiName" column="coi_name"/>
+		<result property="coiRemark" column="coi_remark"/>
+		<result property="coiCreatetime" column="coi_createtime"/>
+		<result property="ischecked" column="ischecked"/>
 	</resultMap>
 
 	<select id="ConstInfo-GetCount" resultClass="Integer">
@@ -28,6 +37,17 @@
 			, coi_remark
 			, coi_createtime
 		FROM const_info
+	</select>
+	
+	<select id="ConstInfo_right-FindAllBytiId" parameterClass="Long" resultMap="ConstInforight-FullResultMap">
+		SELECT
+			a.coi_id
+			, a.coi_code
+			, a.coi_name
+			, a.coi_remark
+			, a.coi_createtime
+			,case ifnull(b.coi_id,0) when 0 then 0 else 1 end as ischecked
+		FROM const_info as a left join template_const as b on b.ti_id = #value# and b.coi_id = a.coi_id
 	</select>
 	
 	<select id="ConstInfo-Find" parameterClass="Long" resultMap="ConstInfo-FullResultMap">

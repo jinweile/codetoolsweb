@@ -93,4 +93,6 @@ public interface IConstInfoService {
 	 */
 	void Reload(ConstInfo obj) throws SQLException;
 	
+	List<ConstInforight> FindAllBytiId(Long tiId) throws SQLException;
+	
 }

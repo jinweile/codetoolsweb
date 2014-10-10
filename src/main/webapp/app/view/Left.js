@@ -54,17 +54,17 @@ Ext.define('CT.view.Left', {
     					    }
     					});
                 	}
+                	
+                    //加载模板使用的变量信息列表
+                    var rightid = "right_id";
+                    var right = Ext.ComponentQuery.query('viewport right')[0];
+                    var tc = Ext.ComponentQuery.query('#right_id');
+                    if(tc.length > 0) {
+                    	right.remove(tc[0]);
+                    }
+                	tc = Ext.widget('rightedit',{id: rightid,title: title,templateid: tid});
+                    right.add(tc).show();
                 }
-                
-                //加载模板使用的变量信息列表
-                var rightid = "right_id";
-                var right = Ext.ComponentQuery.query('viewport right')[0];
-                var tc = Ext.ComponentQuery.query('#right_id');
-                if(tc.length > 0) {
-                	right.remove(tc[0]);
-                }
-            	tc = Ext.widget('rightedit',{id: rightid,title: title,templateid: tid});
-                right.add(tc).show();
         	},
         	//右键菜单
         	'itemcontextmenu': function(menutree, record, items, index, e){

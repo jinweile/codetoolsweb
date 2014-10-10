@@ -31,6 +31,10 @@ public class constinfo {
 	@Qualifier("IConstInfoService")
 	private IConstInfoService ciservice;
 	
+	@Autowired
+	@Qualifier("ITemplateConstService")
+	private ITemplateConstService tcservice;
+	
 	/**
 	 * 常量列表
 	 * @param request
@@ -89,6 +93,64 @@ public class constinfo {
 		ConstInfo obj = new ConstInfo();
 		obj.setCoiId(coiId);
 		ciservice.Delete(obj);
+		response.setContentType("application/json;charset=UTF-8");
+		response.getWriter().write("{\"success\":true}");
+	}
+	
+	/**
+	 * 右端常量列表
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/constlist_right.json", method=RequestMethod.GET)
+	public void constlist_right(HttpServletRequest request, 
+			HttpServletResponse response,
+			@RequestParam(required = false) Long tiId) throws Exception{
+		List<ConstInforight> list = ciservice.FindAllBytiId(tiId == null ? 0 : tiId);
+		Grid<ConstInforight> grid = new Grid<ConstInforight>();
+		grid.setItems(list);
+		response.setContentType("application/json;charset=UTF-8");
+		String json = JSONHelper.serialize(grid);
+		response.getWriter().write(json);
+	}
+	
+	/**
+	 * 增加模板常量关联
+	 * @param request
+	 * @param response
+	 * @param coiId
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/tempconst_add.json", method=RequestMethod.POST)
+	public void tempconst_add(HttpServletRequest request, 
+			HttpServletResponse response,
+			@RequestParam(required = true) Long coiId,
+			@RequestParam(required = true) Long tiId) throws Exception{
+		TemplateConst tc = new TemplateConst();
+		tc.setCoiId(coiId);
+		tc.setTiId(tiId);
+		tcservice.Insert(tc);
+		response.setContentType("application/json;charset=UTF-8");
+		response.getWriter().write("{\"success\":true}");
+	}
+	
+	/**
+	 * 删除模板常量关联
+	 * @param request
+	 * @param response
+	 * @param coiId
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/tempconst_del.json", method=RequestMethod.POST)
+	public void tempconst_del(HttpServletRequest request, 
+			HttpServletResponse response,
+			@RequestParam(required = true) Long coiId,
+			@RequestParam(required = true) Long tiId) throws Exception{
+		TemplateConst tc = new TemplateConst();
+		tc.setCoiId(coiId);
+		tc.setTiId(tiId);
+		tcservice.Delete(tc);
 		response.setContentType("application/json;charset=UTF-8");
 		response.getWriter().write("{\"success\":true}");
 	}

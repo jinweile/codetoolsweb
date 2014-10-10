@@ -39,7 +39,7 @@ public class db {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/dblist.json", method=RequestMethod.GET)
-	public void constlist(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public void dblist(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		List<DbInfo> list = dbservice.FindAll();
 		Grid<DbInfo> grid = new Grid<DbInfo>();
 		grid.setItems(list);
@@ -56,7 +56,7 @@ public class db {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/dbdel.json", method=RequestMethod.POST)
-	public void constinfodel(HttpServletRequest request, 
+	public void dbdel(HttpServletRequest request, 
 			HttpServletResponse response,
 			@RequestParam(required = false) Long diId) throws Exception{
 		DbInfo obj = new DbInfo();
@@ -74,7 +74,7 @@ public class db {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/db.json/{diId}", method=RequestMethod.GET)
-	public void projectshow(HttpServletRequest request, HttpServletResponse response,
+	public void dbshow(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("diId") String diId) throws Exception{
 		response.setContentType("application/json;charset=UTF-8");
 		DbInfo obj = dbservice.Find(Long.valueOf(diId == null ? "0" : diId));
@@ -91,7 +91,7 @@ public class db {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/dbedit.json", method=RequestMethod.POST)
-	public void projectedit(HttpServletRequest request, HttpServletResponse response,
+	public void dbedit(HttpServletRequest request, HttpServletResponse response,
 			DbInfo obj) throws Exception{
 		response.setContentType("application/json;charset=UTF-8");
 		if(obj.getDiId() == null || obj.getDiId().equals(Long.valueOf(0))){

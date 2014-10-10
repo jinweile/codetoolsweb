@@ -61,10 +61,10 @@
 		INSERT INTO template_const (
 			 ti_id
 			, coi_id
-		) VALUES (
+		)  select 
 			 #tiId#
 			, #coiId#
-		)
+		where not exists (SELECT 1 FROM template_const where ti_id = #tiId# and coi_id = #coiId#); 
 		<selectKey resultClass="Long" keyProperty="tcId" >
             <!--sqlite-->
             select last_insert_rowid() as value
@@ -86,7 +86,7 @@
 	<delete id="TemplateConst-Delete" parameterClass="TemplateConst">
 		DELETE FROM template_const
 		WHERE
-			(tc_id = #tcId#)
+			(ti_id = #tiId# and coi_id = #coiId#)
 	</delete>
 
 	<delete id="TemplateConst-DeleteByTiId" parameterClass="Long">
