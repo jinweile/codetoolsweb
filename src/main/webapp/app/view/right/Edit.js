@@ -6,6 +6,34 @@ Ext.define('CT.view.right.Edit', {
     alias : 'widget.rightedit',
     initComponent: function(){
     	var grid = this;
+    	this.selModel = Ext.create('Ext.selection.CheckboxModel',{
+    		//mode: 'MULTI',
+    		checkOnly: true,//只能通过checkbox选中行
+        	listeners:{
+    	    	select: function(model, selected, index, eOpts){
+    	    		if(index < 0) return;
+    	    		//ajax提交数据
+    	    		var tc = Ext.ComponentQuery.query('#right_id')[0];
+					Ext.Ajax.request({
+					    url: 'tempconst_add.json',
+					    method: 'POST',
+					    params: { coiId: selected.data.coiId, tiId: tc.templateid },
+					    success: function(response){}
+					});
+    	    	},
+    	    	deselect: function(model, selected, index, eOpts){
+    	    		if(index < 0) return;
+    	    		//ajax提交数据
+    	    		var tc = Ext.ComponentQuery.query('#right_id')[0];
+    	    		Ext.Ajax.request({
+					    url: 'tempconst_del.json',
+					    method: 'POST',
+					    params: { coiId: selected.data.coiId, tiId: tc.templateid },
+					    success: function(response){}
+					});
+    	    	}
+        	}
+        });
     	this.store = {
         	autoLoad: true,
         	fields:[ 'coiId', 'coiName', 'coiCode','ischecked' ],
@@ -34,33 +62,6 @@ Ext.define('CT.view.right.Edit', {
                   { header: '变量代码', dataIndex: 'coiCode', hidden: false },
                   { header: '是否选择', dataIndex: 'ischecked', hidden: true },
         ];
-    	this.selModel = Ext.create('Ext.selection.CheckboxModel',{
-    		checkOnly: true,//只能通过checkbox选中行
-        	listeners:{
-    	    	select: function(model, selected, index, eOpts){
-    	    		if(index < 0) return;
-    	    		//ajax提交数据
-    	    		var tc = Ext.ComponentQuery.query('#right_id')[0];
-					Ext.Ajax.request({
-					    url: 'tempconst_add.json',
-					    method: 'POST',
-					    params: { coiId: selected.data.coiId, tiId: tc.templateid },
-					    success: function(response){}
-					});
-    	    	},
-    	    	deselect: function(model, selected, index, eOpts){
-    	    		if(index < 0) return;
-    	    		//ajax提交数据
-    	    		var tc = Ext.ComponentQuery.query('#right_id')[0];
-    	    		Ext.Ajax.request({
-					    url: 'tempconst_del.json',
-					    method: 'POST',
-					    params: { coiId: selected.data.coiId, tiId: tc.templateid },
-					    success: function(response){}
-					});
-    	    	}
-        	}
-        });
     	
     	this.callParent(arguments);
     }
