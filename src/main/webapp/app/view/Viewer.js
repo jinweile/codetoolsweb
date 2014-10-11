@@ -18,6 +18,19 @@ Ext.define('CT.view.Viewer', {
 	listeners : {
 		tabchange : function(tp, p) {
 			//Ext.Msg.alert("提示", p.id);
+            //中间与右边设置联动
+            var rightid = "right_id";
+            var right = Ext.ComponentQuery.query('viewport right')[0];
+            var tc = Ext.ComponentQuery.query('#right_id');
+            if(tc.length > 0) {
+            	right.remove(tc[0]);
+            }
+            var treearray = p.id.split("/");
+            if(treearray.length > 2){
+	    		var tid = treearray.length > 2 ?  treearray[2] : 0;
+	        	tc = Ext.widget('rightedit',{id: rightid,title: p.title,templateid: tid});
+	            right.add(tc).show();
+            }
 		}
 	}
 });

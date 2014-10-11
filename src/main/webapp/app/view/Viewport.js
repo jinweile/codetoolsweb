@@ -16,7 +16,7 @@ Ext.define('CT.view.Viewport', {
         xtype: 'left'
     }, {
         region: 'east',
-        width: 225,
+        width: 250,
         xtype: 'right'
     }, {
         region: 'north',
