@@ -60,7 +60,7 @@ Ext.define('CT.view.right.Edit', {
                   { dataIndex: 'coiId', width: 18 },
                   { header: '变量名',  dataIndex: 'coiName', hidden: false },
                   { header: '变量代码', dataIndex: 'coiCode', hidden: false },
-                  { header: '是否选择', dataIndex: 'ischecked', hidden: true },
+                  { header: '是否选择', dataIndex: 'ischecked', hidden: true }
         ];
     	
     	this.callParent(arguments);
