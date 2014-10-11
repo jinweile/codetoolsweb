@@ -50,7 +50,7 @@ Ext.define('CT.view.right.Edit', {
             		var index = 0; 
             		store.each(function(record){
             			if(record.data.ischecked)
-            				grid.selModel.select(index);
+            				grid.selModel.select(index,true,true);
             			index++;
             		});
             	}
